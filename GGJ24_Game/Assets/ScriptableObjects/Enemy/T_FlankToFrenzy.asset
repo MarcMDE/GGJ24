@@ -15,8 +15,8 @@ MonoBehaviour:
   nextState: {fileID: 11400000, guid: b7ee32eab24518b4e8248085b71605e5, type: 2}
   transitionConditions:
     ViewPlayer: 2
-    EyeContact: 2
-    Melee: 0
+    ViewedByPlayer: 2
+    Melee: 1
     EnoughTimeHidden: 0
     NoiseHeard: 0
-    ReachedNoise: 0
+    StateFinished: 0

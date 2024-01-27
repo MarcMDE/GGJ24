@@ -17,7 +17,13 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     [SerializeField] private float frenzySpeedIncrementPercent;
     [SerializeField] private float flankSpeedIncrementPercent;
     [SerializeField] private float frenzyStartSpeedIncrementPercent;
-    
+
+    [SerializeField] private float enemyFovAngle = 60;
+    [SerializeField] private float enemyVisionRange = 100;
+
+    public float EnemyFovAngle => enemyFovAngle;
+    public float EnemyVisionRange => enemyVisionRange;
+
     private bool isStateInitialized = false;
     
     private delegate void voidDelegate();
@@ -34,6 +40,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(currentState.State);
         switch (currentState.State) 
         {
             case EnemyStates.WALK:

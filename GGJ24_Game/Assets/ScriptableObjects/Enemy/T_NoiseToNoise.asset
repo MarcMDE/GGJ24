@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87d711d491b90cb43b74193cf5a043c3, type: 3}
-  m_Name: T_FrenzyToAttack
+  m_Name: T_NoiseToNoise
   m_EditorClassIdentifier: 
-  nextState: {fileID: 11400000, guid: a186c39882c421945b92c47167eb79e8, type: 2}
+  nextState: {fileID: 11400000, guid: 48428dadc784e994ba2429cd7493ea2a, type: 2}
   transitionConditions:
-    ViewPlayer: 0
-    ViewedByPlayer: 0
-    Melee: 2
-    EnoughTimeHidden: 0
-    NoiseHeard: 0
-    StateFinished: 0
+    ViewPlayer: 1
+    EyeContact: 0
+    Melee: 0
+    EnoughTimeHidden: 1
+    NoiseHeard: 1
+    StateFinished: 2
