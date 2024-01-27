@@ -14,10 +14,10 @@ public class InteractiveBehaviourBase : MonoBehaviour
     private bool isComplete = false;
 
     public event UnityAction<float> OnInteracting;
-    public event UnityAction OnInteractionRegionEnter;
-    public event UnityAction OnInteractionRegionExit;
-    public event UnityAction OnInteractionComplete;
-    public event UnityAction OnInteractionCancel;
+    public event UnityAction OnRegionEnter;
+    public event UnityAction OnRegionExit;
+    public event UnityAction OnComplete;
+    public event UnityAction OnCancel;
 
     void Start()
     {
@@ -56,30 +56,46 @@ public class InteractiveBehaviourBase : MonoBehaviour
         }
     }
 
-    void CancelInteraction()
+    protected virtual void CancelInteraction()
     {
         isInteracting = false;
         interactionCounter = 0f;
-        OnInteractionCancel?.Invoke();
+        OnCancel?.Invoke();
     }    
 
-    void CompleteInteraction()
+    protected virtual void CompleteInteraction()
     {
         isInteracting = false;
         interactionCounter = 0f;
         isComplete = true;
-        OnInteractionComplete?.Invoke();
+        OnComplete?.Invoke();
+    }
+
+    protected void EnterRegion()
+    {
+        if (isComplete) return;
+
+        OnRegionEnter?.Invoke();
+        canInteract = true;
+    }
+
+    protected void ExitRegion()
+    {
+        if (isComplete) return;
+
+        CancelInteraction();
+
+        OnRegionExit?.Invoke();
+        canInteract = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        OnInteractionRegionEnter?.Invoke();
-        canInteract = true;
+        EnterRegion();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        OnInteractionRegionExit?.Invoke();
-        canInteract = false;
+        ExitRegion();
     }
 }

@@ -6,18 +6,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float movementSpeed = 5.0f;
-    [SerializeField]
-    private float mouseSensitivity = 2.0f;
+    private GameSettingsSO settings;
     [SerializeField]
     private Camera playerCamera;
 
     private CharacterController characterController;
     private float rotationX = 0;
 
+    Player playerData;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        playerData = Player.Instance;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(horizontal, 0, vertical);
-        Vector3 velocity = movement.normalized * movement.magnitude * movementSpeed;
+        Vector3 velocity = movement.normalized * movement.magnitude * playerData.Speed;
         velocity.y = 0;
 
         velocity = transform.TransformDirection(velocity);
@@ -44,8 +45,8 @@ public class PlayerController : MonoBehaviour
 
     void HandleMouseLook()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * settings.MouseSensivity;
+        float mouseY = Input.GetAxis("Mouse Y") * settings.MouseSensivity;
 
         rotationX -= mouseY;
         rotationX = Mathf.Clamp(rotationX, -90, 90);
