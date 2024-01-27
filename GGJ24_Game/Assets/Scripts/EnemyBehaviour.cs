@@ -21,6 +21,9 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     [SerializeField] private float enemyFovAngle = 60;
     [SerializeField] private float enemyVisionRange = 100;
     [SerializeField] private float timeHiddenThreshold = 5;
+    
+    
+    [SerializeField] private Animator animator;
     public float EnemyFovAngle => enemyFovAngle;
 
     public float CurrentSpeed => navMeshController.CurrentSpeed;
@@ -107,6 +110,8 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         navMeshController.SetDestination(randomPoint);
         navMeshController.ResetSpeed();
         isStateInitialized = true;
+        SetAnimation(AnimatorStates.Walk);
+
     }
     void UpdateWalk()
     {
@@ -143,6 +148,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         navMeshController.SetDestination(Player.Instance.Position);
         navMeshController.ResetSpeed();
         isStateInitialized = true;
+        SetAnimation(AnimatorStates.Walk);
     }
     void UpdateFlank()
     {
@@ -175,8 +181,12 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     {
         navMeshController.IsStopped = true;
         //enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
+        SetAnimation(AnimatorStates.Scream);
+
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Run"));
         
-        yield return new WaitForSeconds(1f);
+        SetAnimation(AnimatorStates.Run);
+
         navMeshController.ResetSpeed();
         navMeshController.IncreaseSpeed(frenzyStartSpeedIncrementPercent);
         navMeshController.SetDestination(Player.Instance.Position);
@@ -186,9 +196,24 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     IEnumerator AttackCR()
     {
-        yield return new WaitForSeconds(2f);
+        SetAnimation(AnimatorStates.Attack);
+        
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
         
         isStateInitialized = true;
     }
-    
+
+    private void SetAnimation(AnimatorStates state)
+    {
+        animator.SetInteger("expectedState", (int)state);
+    }
+}
+
+public enum AnimatorStates
+{
+    Idle,
+    Walk,
+    Run,
+    Scream,
+    Attack
 }
