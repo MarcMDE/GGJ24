@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Toolbars;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField]
@@ -11,6 +13,11 @@ public class EnemyBehaviour : MonoBehaviour
 
     bool isStateInitialized = false;
     private delegate void voidDelegate();
+
+    private Vector3 lastNoiseHeardPos;
+
+    [SerializeField] private LayerMask noiseLayer;
+    [SerializeField] private LayerMask playerLayer;
 
     void Start()
     {
@@ -48,7 +55,8 @@ public class EnemyBehaviour : MonoBehaviour
         }
         update();
     }
-
+    
+    //Walk
     void InitWalk()
     {
         
@@ -56,17 +64,73 @@ public class EnemyBehaviour : MonoBehaviour
     void UpdateWalk()
     {
         // TODO: Walk logic
+    }
+    
+    //Frenzy
+    void InitFrenzy()
+    {
+        
+    }
+    void UpdateFrenzy()
+    {
 
-
+    }
+    
+    //Attack
+    void InitAttack()
+    {
+        
+    }
+    void UpdateAttack()
+    {
+        
+    }
+    
+    //Flank
+    void InitFlank()
+    {
+        
+    }
+    void UpdateFlank()
+    {
+        
+    }
+    
+    //TP
+    void InitTp()
+    {
+        
+    }
+    void UpdateTp()
+    {
+        
+    }
+    
+    //Noise
+    void InitNoise()
+    {
+        
+    }
+    void UpdateNoise()
+    {
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyTransitionConditionsContainer.Instance.Values.Melee = TriState.TRUE;
+        if ((playerLayer.value & (1 << other.gameObject.layer)) > 0)
+        {
+            EnemyTransitionConditionsContainer.Instance.Values.Melee = TriState.TRUE;
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        EnemyTransitionConditionsContainer.Instance.Values.Melee = TriState.FALSE;
+        if ((playerLayer.value & (1 << other.gameObject.layer)) > 0)
+        {
+            EnemyTransitionConditionsContainer.Instance.Values.Melee = TriState.FALSE;
+        }
+        
     }
 }
