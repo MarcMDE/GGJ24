@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    const float IsMovingThreshold = 0.001f;
+
     [SerializeField]
     private GameSettingsSO settings;
     [SerializeField]
@@ -14,6 +17,11 @@ public class PlayerController : MonoBehaviour
     private float rotationX = 0;
 
     Player playerData;
+
+    bool isMoving = false;
+
+    public event UnityAction OnStartMoving;
+    public event UnityAction OnStopMoving;
 
     void Start()
     {
@@ -36,7 +44,15 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(horizontal, 0, vertical);
-        Vector3 velocity = movement.normalized * movement.magnitude * playerData.Speed;
+        float movementMag = movement.magnitude;
+
+        bool prevIsMoving = isMoving;
+        isMoving = movementMag > IsMovingThreshold;
+
+        if (!prevIsMoving && isMoving) OnStartMoving?.Invoke();
+        else if (prevIsMoving && !isMoving) OnStopMoving?.Invoke();
+
+        Vector3 velocity = movement.normalized * movementMag * playerData.Speed;
         velocity.y = 0;
 
         velocity = transform.TransformDirection(velocity);
