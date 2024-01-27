@@ -17,6 +17,6 @@ MonoBehaviour:
     ViewPlayer: 1
     ViewedByPlayer: 0
     Melee: 0
-    EnoughTimeHidden: 1
+    EnoughTimeHidden: 0
     NoiseHeard: 2
     StateFinished: 0

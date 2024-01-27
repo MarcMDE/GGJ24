@@ -20,27 +20,38 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     [SerializeField] private float enemyFovAngle = 60;
     [SerializeField] private float enemyVisionRange = 100;
-    [SerializeField] private float timeHiddenThreshold = 5; 
-
+    [SerializeField] private float timeHiddenThreshold = 5;
+    
+    
+    [SerializeField] private Animator animator;
     public float EnemyFovAngle => enemyFovAngle;
+
+    public float CurrentSpeed => navMeshController.CurrentSpeed;
 
     private bool isStateInitialized = false;
     
     private delegate void voidDelegate();
 
+
     private NavMeshController navMeshController;
     private EnemyAudioPlayer enemyAudioPlayer;
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        navMeshController = GetComponent<NavMeshController>();
+    }
+
     void Start()
     {
-        navMeshController = GetComponent<NavMeshController>();
         currentState = startState;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentState.State);
+        //Debug.Log(currentState.State);
         switch (currentState.State) 
         {
             case EnemyStates.WALK:
@@ -74,13 +85,22 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         }
     }
 
+    public bool CanTranisitonToState(EnemyStates state)
+    {
+        return currentState.GetPossibleStatesList().Contains(state);
+    }
+
     private void ApplyState(voidDelegate init, voidDelegate update)
     {
         if (!isStateInitialized)
         {
             init();
         }
-        update();
+        else
+        {
+            update();
+        }
+        
     }
     
     //Walk
@@ -90,6 +110,8 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         navMeshController.SetDestination(randomPoint);
         navMeshController.ResetSpeed();
         isStateInitialized = true;
+        SetAnimation(AnimatorStates.Walk);
+
     }
     void UpdateWalk()
     {
@@ -117,13 +139,16 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     }
     void UpdateAttack()
     {
-        
+        EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.TRUE;
     }
     
     //Flank
     void InitFlank()
     {
         navMeshController.SetDestination(Player.Instance.Position);
+        navMeshController.ResetSpeed();
+        isStateInitialized = true;
+        SetAnimation(AnimatorStates.Walk);
     }
     void UpdateFlank()
     {
@@ -144,6 +169,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     //Noise
     void InitNoise()
     {
+        EnemyTransitionConditionsContainer.Instance.Values.NoiseHeard = TriState.FALSE;
         StartCoroutine(InitFrenzyCR());
     }
     void UpdateNoise()
@@ -155,8 +181,13 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     {
         navMeshController.IsStopped = true;
         //enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
+        SetAnimation(AnimatorStates.Scream);
+
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Run"));
         
-        yield return new WaitForSeconds(1f);
+        SetAnimation(AnimatorStates.Run);
+
+        navMeshController.ResetSpeed();
         navMeshController.IncreaseSpeed(frenzyStartSpeedIncrementPercent);
         navMeshController.SetDestination(Player.Instance.Position);
         navMeshController.IsStopped = false;
@@ -165,8 +196,24 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     IEnumerator AttackCR()
     {
-        yield return new WaitForSeconds(2f);
-        EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.TRUE;
+        SetAnimation(AnimatorStates.Attack);
+        
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
+        
+        isStateInitialized = true;
     }
-    
+
+    private void SetAnimation(AnimatorStates state)
+    {
+        animator.SetInteger("expectedState", (int)state);
+    }
+}
+
+public enum AnimatorStates
+{
+    Idle,
+    Walk,
+    Run,
+    Scream,
+    Attack
 }
