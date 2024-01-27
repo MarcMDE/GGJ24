@@ -30,6 +30,11 @@ public class NavMeshController : MonoBehaviour
         
     }
 
+    public void Stop()
+    {
+        navMeshAgent.isStopped = true;
+    }
+
     public void SetDestination(Vector3 destination)
     {
         navMeshAgent.SetDestination(destination);
@@ -47,6 +52,11 @@ public class NavMeshController : MonoBehaviour
         float zMax = surface.navMeshData.sourceBounds.max.z;
         float y = surface.navMeshData.sourceBounds.center.y;
         return new Vector3(Random.Range(xMin, xMax), y, Random.Range(zMin, zMax));
+    }
+    public void IncreaseSpeed(float percentIncrement)
+    {
+        var value = 1 + percentIncrement / 100;
+        navMeshAgent.speed *= value;
     }
     
 }

@@ -5,19 +5,28 @@ using UnityEditor;
 using UnityEditor.Toolbars;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
-[RequireComponent( typeof(NavMeshController))]
+[RequireComponent( typeof(NavMeshController),typeof(EnemyAudioPlayer))]
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] 
     EnemyStateSO startState;
     EnemyStateSO currentState;
+
+    [SerializeField] private float frenzySpeedIncrementPercent;
+    [SerializeField] private float flankSpeedIncrementPercent;
+    [SerializeField] private float frenzyStartSpeedIncrementPercent;
     
     private bool isStateInitialized = false;
     
     private delegate void voidDelegate();
 
     private NavMeshController navMeshController;
+    private EnemyAudioPlayer enemyAudioPlayer;
+    
+    //ToDO use actual player pos
+    private Vector3 playerPos = Vector3.zero;
     void Start()
     {
         navMeshController = GetComponent<NavMeshController>();
@@ -64,7 +73,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (!isStateInitialized)
         {
-            isStateInitialized = true;
             init();
         }
         update();
@@ -75,6 +83,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         var randomPoint = navMeshController.GetRandomPoint();
         navMeshController.SetDestination(randomPoint);
+        isStateInitialized = true;
     }
     void UpdateWalk()
     {
@@ -84,17 +93,21 @@ public class EnemyBehaviour : MonoBehaviour
     //Frenzy
     void InitFrenzy()
     {
-        
+        StartCoroutine(InitFrenzyCR());
     }
+
+    
+    
     void UpdateFrenzy()
     {
-
+        navMeshController.IncreaseSpeed(frenzySpeedIncrementPercent * Time.deltaTime);
+        navMeshController.SetDestination(playerPos);
     }
     
     //Attack
     void InitAttack()
     {
-        
+        StartCoroutine(AttackCR());
     }
     void UpdateAttack()
     {
@@ -104,11 +117,12 @@ public class EnemyBehaviour : MonoBehaviour
     //Flank
     void InitFlank()
     {
-        
+        navMeshController.SetDestination(playerPos);
     }
     void UpdateFlank()
     {
-        
+        navMeshController.IncreaseSpeed(flankSpeedIncrementPercent * Time.deltaTime);
+        navMeshController.SetDestination(playerPos);
     }
     
     //TP
@@ -124,11 +138,28 @@ public class EnemyBehaviour : MonoBehaviour
     //Noise
     void InitNoise()
     {
-        
+        StartCoroutine(InitFrenzyCR());
     }
     void UpdateNoise()
     {
+        if (navMeshController.HasAgentReachedDestination()) EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.TRUE;
+    }
+
+    IEnumerator InitFrenzyCR()
+    {
+        navMeshController.Stop();
+        enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
         
+        yield return new WaitForSeconds(1f);
+        navMeshController.IncreaseSpeed(frenzyStartSpeedIncrementPercent);
+        navMeshController.SetDestination(playerPos);
+        isStateInitialized = true;
+    }
+
+    IEnumerator AttackCR()
+    {
+        yield return new WaitForSeconds(2f);
+        EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.TRUE;
     }
     
 }

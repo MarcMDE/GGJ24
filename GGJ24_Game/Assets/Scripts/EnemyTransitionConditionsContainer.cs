@@ -14,6 +14,4 @@ public class EnemyTransitionConditionsContainer
     public static EnemyTransitionConditionsContainer Instance { get { return instance; } }
 
     public EnemyTransitionConditions Values;
-    
-    public Vector3 LastNoiseHeardPos;
 }
