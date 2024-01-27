@@ -46,7 +46,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1.57
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -119,7 +119,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1.1
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -282,7 +282,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6360695351320797603
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 1283285584572801219}
   - component: {fileID: 6286860051163845465}
   m_Layer: 10
-  m_Name: Walk
+  m_Name: Scream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,8 +438,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: ca863004bd09c66468d97d91dd675185, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada71c85800b69e46bdb40572d5227b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioType: 2
+  AudioType: 0
 --- !u!1001 &6240347298180364726
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,28 @@ MonoBehaviour:
   m_Name: PlayerSteps
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: d85fbc458e1701a40862521992ea2f47, type: 3}
-  - {fileID: 8300000, guid: 0667d5e48343cdf48b9678453de90e91, type: 3}
-  - {fileID: 8300000, guid: 39cee16577fa7284488cf3ce759b6cc8, type: 3}
+  - {fileID: 8300000, guid: b68f926df1400fd49b67453a8d60e86c, type: 3}
+  - {fileID: 8300000, guid: 1643a8f23dff7d14ea9c054a7e08cafc, type: 3}
+  - {fileID: 8300000, guid: c091bae021ac7d146a62154b614e357b, type: 3}
+  - {fileID: 8300000, guid: 18839f353949b224e863a7677c87d9eb, type: 3}
+  - {fileID: 8300000, guid: 6fc657295ee3c8e419b3741dc7d9cc44, type: 3}
+  - {fileID: 8300000, guid: 072d7187847909c479ea0cc97bc06599, type: 3}
+  - {fileID: 8300000, guid: 676d0c75e9ee9e14989e5233b263137a, type: 3}
+  - {fileID: 8300000, guid: 67cc9028fdc1c6048a38628131678729, type: 3}
+  - {fileID: 8300000, guid: c0d2a93a784e94e4db89cc9555ebcd80, type: 3}
+  - {fileID: 8300000, guid: 49200705c331d4343b0b5b796930d3f1, type: 3}
+  - {fileID: 8300000, guid: 146c43add4ff6a84db558214b7f07120, type: 3}
+  - {fileID: 8300000, guid: 63f4db42d3c704648a1b9d24e28833bc, type: 3}
+  - {fileID: 8300000, guid: 4169aae7ce1a6224b8d1a9be6ea8bedf, type: 3}
+  - {fileID: 8300000, guid: ea3679981da5e1e408b83490d03599de, type: 3}
+  - {fileID: 8300000, guid: 68bae1596396a19498a8405464d9b595, type: 3}
+  - {fileID: 8300000, guid: f95ab6df4e1f1c84aa0c3280286bc11f, type: 3}
+  - {fileID: 8300000, guid: c9d25d2816c6a7f46a4c6ba24b328468, type: 3}
+  - {fileID: 8300000, guid: 07ef083664064d348b3ed0e3e2760ba7, type: 3}
+  - {fileID: 8300000, guid: aa6da2a910d431c45ba037f2ca8ae67a, type: 3}
+  - {fileID: 8300000, guid: 2338dc1eed14c314f9e935ee131947c0, type: 3}
+  - {fileID: 8300000, guid: e270bcd14d1959847a0ca583d3f85c83, type: 3}
+  - {fileID: 8300000, guid: 171363fa290f40b49bf684f3b7be27c9, type: 3}
+  - {fileID: 8300000, guid: e492e84e8efee1945a6040b2c5e7adf2, type: 3}
+  - {fileID: 8300000, guid: e1556964fe446514faca2d03516aa07c, type: 3}
+  - {fileID: 8300000, guid: 5a66b959a765f23449453311db13f0fc, type: 3}
