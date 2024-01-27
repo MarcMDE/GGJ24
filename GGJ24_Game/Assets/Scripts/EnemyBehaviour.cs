@@ -10,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     EnemyStateSO currentState;
 
     bool isStateInitialized = false;
+    private delegate void voidDelegate();
 
     void Start()
     {
@@ -29,13 +30,7 @@ public class EnemyBehaviour : MonoBehaviour
         switch (currentState.State) 
         {
             case EnemyStates.WALK:
-                if (!isStateInitialized)
-                {
-
-                    isStateInitialized = true;
-                }
-
-                UpdateWalk();
+                ApplyState(InitWalk,UpdateWalk);
                 break;
 
             // TODO: Add states
@@ -44,6 +39,20 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    private void ApplyState(voidDelegate init, voidDelegate update)
+    {
+        if (!isStateInitialized)
+        {
+            isStateInitialized = true;
+            init();
+        }
+        update();
+    }
+
+    void InitWalk()
+    {
+        
+    }
     void UpdateWalk()
     {
         // TODO: Walk logic

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a85241c698b4e2349bcd256c82ecad33, type: 3}
-  m_Name: EnemyState_Frenzy
+  m_Name: Noise
   m_EditorClassIdentifier: 
-  state: 1
+  state: 2
   transitions:
-  - {fileID: 11400000, guid: 684097e7728a69a428c3f590ad4469ae, type: 2}
+  - {fileID: 0}
