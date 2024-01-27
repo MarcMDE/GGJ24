@@ -23,14 +23,6 @@ public class PlayerHP : MonoBehaviour
         currentHP = maxHP;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SufferDamage(25f);
-        }
-    }
-
     private void SufferDamage(float d)
     {
         currentHP -= d;
