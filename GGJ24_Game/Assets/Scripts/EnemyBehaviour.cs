@@ -21,11 +21,12 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     [SerializeField] private float enemyFovAngle = 60;
     [SerializeField] private float enemyVisionRange = 100;
     [SerializeField] private float timeHiddenThreshold = 5;
+    [SerializeField] private float aggroDropDelay = 0.25f;
     
     
     [SerializeField] private Animator animator;
     public float EnemyFovAngle => enemyFovAngle;
-
+    public float AggroDropDelay => aggroDropDelay;
     public float CurrentSpeed => navMeshController.CurrentSpeed;
 
     private bool isStateInitialized = false;
@@ -82,6 +83,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
             currentState = nextState;
             isStateInitialized = false;
             EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.FALSE;
+            Debug.Log(currentState.State);
         }
     }
 
