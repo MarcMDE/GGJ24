@@ -20,9 +20,9 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     [SerializeField] private float enemyFovAngle = 60;
     [SerializeField] private float enemyVisionRange = 100;
+    [SerializeField] private float timeHiddenThreshold = 5; 
 
     public float EnemyFovAngle => enemyFovAngle;
-    public float EnemyVisionRange => enemyVisionRange;
 
     private bool isStateInitialized = false;
     
@@ -88,6 +88,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     {
         var randomPoint = navMeshController.GetRandomPoint();
         navMeshController.SetDestination(randomPoint);
+        navMeshController.ResetSpeed();
         isStateInitialized = true;
     }
     void UpdateWalk()
@@ -152,12 +153,13 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     IEnumerator InitFrenzyCR()
     {
-        navMeshController.Stop();
-        enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
+        navMeshController.IsStopped = true;
+        //enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
         
         yield return new WaitForSeconds(1f);
         navMeshController.IncreaseSpeed(frenzyStartSpeedIncrementPercent);
         navMeshController.SetDestination(Player.Instance.Position);
+        navMeshController.IsStopped = false;
         isStateInitialized = true;
     }
 

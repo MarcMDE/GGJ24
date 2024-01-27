@@ -11,8 +11,12 @@ public class NavMeshController : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     private CapsuleCollider capsuleCollider;
+    private float normalSpeed;
     
     [SerializeField] private NavMeshSurface surface;
+
+    public bool IsStopped { set { navMeshAgent.isStopped = value; }
+    } 
     
     private float destinationThreshold = 0.1f;
 
@@ -21,6 +25,7 @@ public class NavMeshController : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        normalSpeed = navMeshAgent.speed;
         destinationThreshold = capsuleCollider.radius * Mathf.Abs(transform.lossyScale.x);
     }
 
@@ -29,12 +34,6 @@ public class NavMeshController : MonoBehaviour
     {
         
     }
-
-    public void Stop()
-    {
-        navMeshAgent.isStopped = true;
-    }
-
     public void SetDestination(Vector3 destination)
     {
         navMeshAgent.SetDestination(destination);
@@ -57,6 +56,11 @@ public class NavMeshController : MonoBehaviour
     {
         var value = 1 + percentIncrement / 100;
         navMeshAgent.speed *= value;
+    }
+
+    public void ResetSpeed()
+    {
+        navMeshAgent.speed = normalSpeed;
     }
     
 }

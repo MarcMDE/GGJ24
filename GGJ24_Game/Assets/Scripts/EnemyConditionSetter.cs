@@ -14,6 +14,8 @@ public class EnemyConditionSetter : MonoBehaviour
 
     private float playerFarDistance;
     private float playerHorizontalFov;
+
+    private float timeHiddenCounter = 0f;
     
     
     // Start is called before the first frame update
@@ -26,9 +28,20 @@ public class EnemyConditionSetter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckViewPlayer();
-        CheckViewedByPlayer();
-        Debug.Log("c1: "+EnemyTransitionConditionsContainer.Instance.Values[0]+", "+"c2: "+EnemyTransitionConditionsContainer.Instance.Values[0]);
+        EvaluateTimeHidden(CheckViewPlayer(), CheckViewedByPlayer());
+    }
+
+    private void EvaluateTimeHidden(bool viewPlayer,bool viewedByPlayer)
+    {
+        /*if (viewPlayer || viewedByPlayer)
+        {
+            timeHiddenCounter = 0f;
+        }
+        else
+        {
+            timeHiddenCounter += Time.deltaTime;
+        }*/
+        
         
     }
     
@@ -41,9 +54,6 @@ public class EnemyConditionSetter : MonoBehaviour
         
         playerHorizontalFov = Camera.main.fieldOfView * Camera.main.aspect/2;
         playerFarDistance = GetCameraDistance();
-        
-        Debug.Log("dist: "+playerFarDistance);
-        Debug.Log("fov: "+playerHorizontalFov);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -66,18 +76,20 @@ public class EnemyConditionSetter : MonoBehaviour
         }
     }
 
-    private void CheckViewPlayer()
+    private bool CheckViewPlayer()
     {
-        var gazeVector = Player.Instance.Position - transform.position;
+        var gazeVector = Player.Instance.CenterPosition - transform.position;
+        
         var angle = Vector3.Angle(gazeVector, transform.forward);
+        
+        
 
         var viewPlayer = false;
         var rayMask = scenarioLayer | playerLayer;
         
-        Debug.Log("angle: "+angle);
-        
-        if (angle < enemyBehaviour.EnemyFovAngle && Physics.Raycast(transform.position, gazeVector, out RaycastHit hit, enemyBehaviour.EnemyVisionRange,rayMask))
+        if (angle < enemyBehaviour.EnemyFovAngle && Physics.Raycast(transform.position, gazeVector, out RaycastHit hit, playerFarDistance,rayMask))
         {
+            Debug.DrawRay(transform.position,gazeVector, Color.red,0.5f);
             // Check if the ray hits the player
             if (((1 << hit.collider.gameObject.layer) & playerLayer.value) != 0)
             {
@@ -85,27 +97,30 @@ public class EnemyConditionSetter : MonoBehaviour
             }
         }
         EnemyTransitionConditionsContainer.Instance.Values.ViewPlayer = viewPlayer ? TriState.TRUE : TriState.FALSE;
+        
+        return viewPlayer;
     }
     
-    private void CheckViewedByPlayer()
+    private bool CheckViewedByPlayer()
     {
-        var gazeVector = transform.position - Player.Instance.Position;
-
-        var horizontalFov = Camera.main.fieldOfView * Camera.main.aspect;
+        var gazeVector = transform.position - Player.Instance.CenterPosition;
         
         var angle = Vector3.Angle(gazeVector, Player.Instance.Forward);
 
         var viewedByPlayer = false;
         var rayMask = scenarioLayer | enemyLayer;
-        if (angle < horizontalFov && Physics.Raycast(Player.Instance.Position, gazeVector, out RaycastHit hit, playerFarDistance, rayMask))
+        if (angle < playerHorizontalFov && Physics.Raycast(Player.Instance.CenterPosition, gazeVector, out RaycastHit hit, playerFarDistance, rayMask))
         {
+            Debug.DrawRay(Player.Instance.CenterPosition,gazeVector, Color.green,0.5f);
             // Check if the ray hits the player
-            if (((1 << hit.collider.gameObject.layer) & playerLayer.value) != 0)
+            if (((1 << hit.collider.gameObject.layer) & enemyLayer.value) != 0)
             {
                 viewedByPlayer = true;
             }
         }
         EnemyTransitionConditionsContainer.Instance.Values.ViewedByPlayer = viewedByPlayer ? TriState.TRUE : TriState.FALSE;
+
+        return viewedByPlayer;
     }
 
     private float GetCameraDistance()
