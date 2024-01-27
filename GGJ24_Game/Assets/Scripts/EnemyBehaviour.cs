@@ -38,6 +38,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     {
         base.Awake();
 
+        enemyAudioPlayer = GetComponent<EnemyAudioPlayer>();
         navMeshController = GetComponent<NavMeshController>();
     }
 
@@ -163,7 +164,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     IEnumerator InitFrenzyCR()
     {
         navMeshController.IsStopped = true;
-        //enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
+        enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
         
         yield return new WaitForSeconds(1f);
         navMeshController.IncreaseSpeed(frenzyStartSpeedIncrementPercent);
