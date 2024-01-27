@@ -24,23 +24,32 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     public float EnemyFovAngle => enemyFovAngle;
 
+    public float CurrentSpeed => navMeshController.CurrentSpeed;
+
     private bool isStateInitialized = false;
     
     private delegate void voidDelegate();
 
+
     private NavMeshController navMeshController;
     private EnemyAudioPlayer enemyAudioPlayer;
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        navMeshController = GetComponent<NavMeshController>();
+    }
+
     void Start()
     {
-        navMeshController = GetComponent<NavMeshController>();
         currentState = startState;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentState.State);
+        //Debug.Log(currentState.State);
         switch (currentState.State) 
         {
             case EnemyStates.WALK:
