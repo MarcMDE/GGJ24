@@ -1,0 +1,1 @@
+public enum TriState { X=0,FALSE, TRUE};

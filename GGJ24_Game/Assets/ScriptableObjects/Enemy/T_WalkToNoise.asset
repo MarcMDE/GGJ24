@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87d711d491b90cb43b74193cf5a043c3, type: 3}
-  m_Name: EnemyStateTransition_FrenzyToWalk
+  m_Name: T_WalkToNoise
   m_EditorClassIdentifier: 
-  nextState: {fileID: 11400000, guid: 48428dadc784e994ba2429cd7493ea2a, type: 2}
+  nextState: {fileID: 11400000, guid: fbf0e21682673e9489057a4d5ce07e7c, type: 2}
   transitionConditions:
-    ViewPlayer: 0
-    EyeContact: 2
-    Melee: 2
+    ViewPlayer: 1
+    EyeContact: 0
+    Melee: 0
+    EnoughTimeHidden: 1
+    NoiseHeard: 2
+    ReachedNoise: 0
