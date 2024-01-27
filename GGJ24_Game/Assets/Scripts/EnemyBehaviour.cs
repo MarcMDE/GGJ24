@@ -181,6 +181,8 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     IEnumerator InitFrenzyCR()
     {
         navMeshController.IsStopped = true;
+
+        Debug.Log("Init frenzy CR");
         enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
 
         SetAnimation(AnimatorStates.Scream);
