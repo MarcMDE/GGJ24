@@ -39,8 +39,21 @@ public class EnemyBehaviour : MonoBehaviour
             case EnemyStates.WALK:
                 ApplyState(InitWalk,UpdateWalk);
                 break;
-
-            // TODO: Add states
+            case EnemyStates.FLANK:
+                ApplyState(InitFlank,UpdateFlank);
+                break;
+            case EnemyStates.NOISE:
+                ApplyState(InitNoise,UpdateNoise);
+                break;
+            case EnemyStates.ATTACK:
+                ApplyState(InitAttack,UpdateAttack);
+                break;
+            case EnemyStates.FRENZY:
+                ApplyState(InitFrenzy,UpdateFrenzy);
+                break;
+            case EnemyStates.TELEPORT:
+                ApplyState(InitTp,UpdateTp);
+                break;
 
             default: break;
         }
