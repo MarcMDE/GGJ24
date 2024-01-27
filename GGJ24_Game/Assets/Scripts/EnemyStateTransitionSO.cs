@@ -20,7 +20,9 @@ public class EnemyStateTransitionSO : ScriptableObject
         bool t = true;
         int ci = 0;
 
+        
         var conditionsContainer = EnemyTransitionConditionsContainer.Instance;
+        
         while (t && ci < EnemyTransitionConditions.Length)
         {
             if (transitionConditions[ci] != TriState.X &&

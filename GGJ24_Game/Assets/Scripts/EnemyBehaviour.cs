@@ -1,39 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEditor;
 using UnityEditor.Toolbars;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent( typeof(NavMeshController))]
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField] 
+    EnemyStateSO startState;
     EnemyStateSO currentState;
-
-    bool isStateInitialized = false;
+    
+    private bool isStateInitialized = false;
+    
     private delegate void voidDelegate();
 
-    private Vector3 lastNoiseHeardPos;
-
-    [SerializeField] private LayerMask noiseLayer;
-    [SerializeField] private LayerMask playerLayer;
-
+    private NavMeshController navMeshController;
     void Start()
     {
-        
+        navMeshController = GetComponent<NavMeshController>();
+        currentState = startState;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var nextState = currentState.NextState();
-        if (nextState != null)
-        {
-            currentState = nextState;
-            isStateInitialized = false;
-        }
-
         switch (currentState.State) 
         {
             case EnemyStates.WALK:
@@ -57,6 +50,14 @@ public class EnemyBehaviour : MonoBehaviour
 
             default: break;
         }
+        
+        var nextState = currentState.NextState();
+        if (nextState != null)
+        {
+            currentState = nextState;
+            isStateInitialized = false;
+            EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.FALSE;
+        }
     }
 
     private void ApplyState(voidDelegate init, voidDelegate update)
@@ -72,11 +73,12 @@ public class EnemyBehaviour : MonoBehaviour
     //Walk
     void InitWalk()
     {
-        
+        var randomPoint = navMeshController.GetRandomPoint();
+        navMeshController.SetDestination(randomPoint);
     }
     void UpdateWalk()
     {
-        // TODO: Walk logic
+        if (navMeshController.HasAgentReachedDestination()) EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.TRUE;
     }
     
     //Frenzy
@@ -128,22 +130,5 @@ public class EnemyBehaviour : MonoBehaviour
     {
         
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if ((playerLayer.value & (1 << other.gameObject.layer)) > 0)
-        {
-            EnemyTransitionConditionsContainer.Instance.Values.Melee = TriState.TRUE;
-        }
-        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if ((playerLayer.value & (1 << other.gameObject.layer)) > 0)
-        {
-            EnemyTransitionConditionsContainer.Instance.Values.Melee = TriState.FALSE;
-        }
-        
-    }
+    
 }

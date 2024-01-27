@@ -19,4 +19,4 @@ MonoBehaviour:
     Melee: 0
     EnoughTimeHidden: 1
     NoiseHeard: 1
-    ReachedNoise: 2
+    StateFinished: 2

@@ -10,7 +10,7 @@ public class EnemyTransitionConditions
     public TriState Melee;
     public TriState EnoughTimeHidden;
     public TriState NoiseHeard;
-    public TriState ReachedNoise;
+    public TriState StateFinished;
 
     public TriState this[int index]
     {
@@ -29,7 +29,7 @@ public class EnemyTransitionConditions
                 case 4: 
                     return NoiseHeard;
                 case 5:
-                    return ReachedNoise;
+                    return StateFinished;
 
                 default: return TriState.X;
             }
@@ -54,7 +54,7 @@ public class EnemyTransitionConditions
                     NoiseHeard = value;
                     break;
                 case 5:
-                    ReachedNoise = value;
+                    StateFinished = value;
                     break;
 
                 default: break;

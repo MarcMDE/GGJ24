@@ -150,6 +150,8 @@ GameObject:
   - component: {fileID: 1078558256298806540}
   - component: {fileID: 6219348068698982588}
   - component: {fileID: 4715267110178452088}
+  - component: {fileID: 8072408155793135352}
+  - component: {fileID: 6360695351320797603}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -207,10 +209,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4305522531fb1ba45b4213ea7c1d9d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: {fileID: 0}
+  startState: {fileID: 0}
   noiseLayer:
     serializedVersion: 2
     m_Bits: 2048
   playerLayer:
     serializedVersion: 2
     m_Bits: 4096
+  surface: {fileID: 0}
+--- !u!136 &8072408155793135352
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624975463882861138}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6360695351320797603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624975463882861138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f88da20018d824282e11a6e631c321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
