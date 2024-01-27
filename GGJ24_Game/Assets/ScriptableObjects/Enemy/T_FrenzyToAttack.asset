@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextState: {fileID: 11400000, guid: a186c39882c421945b92c47167eb79e8, type: 2}
   transitionConditions:
-    ViewPlayer: 2
-    EyeContact: 0
+    ViewPlayer: 0
+    ViewedByPlayer: 0
     Melee: 2
     EnoughTimeHidden: 0
     NoiseHeard: 0
-    ReachedNoise: 0
+    StateFinished: 0

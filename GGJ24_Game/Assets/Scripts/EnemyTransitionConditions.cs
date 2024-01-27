@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class EnemyTransitionConditions
@@ -6,7 +7,7 @@ public class EnemyTransitionConditions
     public static readonly int Length = 6;
 
     public TriState ViewPlayer;
-    public TriState EyeContact;
+    public TriState ViewedByPlayer;
     public TriState Melee;
     public TriState EnoughTimeHidden;
     public TriState NoiseHeard;
@@ -21,7 +22,7 @@ public class EnemyTransitionConditions
                 case 0:
                     return ViewPlayer;
                 case 1: 
-                    return EyeContact;
+                    return ViewedByPlayer;
                 case 2:
                     return Melee;
                 case 3:
@@ -42,7 +43,7 @@ public class EnemyTransitionConditions
                     ViewPlayer = value;
                     break;
                 case 1:
-                    EyeContact = value;
+                    ViewedByPlayer = value;
                     break;
                 case 2:
                     Melee = value;
