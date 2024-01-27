@@ -13,5 +13,17 @@ MonoBehaviour:
   m_Name: EnemySteps
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 409161d37a274a64081523d6d5a9a5f2, type: 3}
-  - {fileID: 8300000, guid: 8ab727f4a43d7a148b60aaaa1be79fc8, type: 3}
+  - {fileID: 8300000, guid: 1e352411d56c97841a0bb85075e3e135, type: 3}
+  - {fileID: 8300000, guid: 7f099064f88b5f34aa5de9264b6b3759, type: 3}
+  - {fileID: 8300000, guid: 3dafb38d0da6f2843a76461799f304a0, type: 3}
+  - {fileID: 8300000, guid: 4038a6382ec721a48b28b37bafd53d26, type: 3}
+  - {fileID: 8300000, guid: 80d5fc38528e3c746b112225db223fdb, type: 3}
+  - {fileID: 8300000, guid: d3dfe0b88eca38a4496d347525c0dcac, type: 3}
+  - {fileID: 8300000, guid: 0c4f8d1c3fda2b24287cb3bc1720c1f3, type: 3}
+  - {fileID: 8300000, guid: 67756c7685e849949bf3d9e5c26b37ea, type: 3}
+  - {fileID: 8300000, guid: 4a5a42c811f3b9345b7fa546d35f1e7a, type: 3}
+  - {fileID: 8300000, guid: 26ac299eac0c5eb499e39a1705403e59, type: 3}
+  - {fileID: 8300000, guid: 2ae27da54babc6447a5bfcb2a5aad4c9, type: 3}
+  - {fileID: 8300000, guid: ba8e001975a59474bb77d72d91380720, type: 3}
+  - {fileID: 8300000, guid: 479c7728d661db349a89d74c0ab4ed5b, type: 3}
+  - {fileID: 8300000, guid: 9613ef077d810b34a8582c3b952781b3, type: 3}

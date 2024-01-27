@@ -10,13 +10,26 @@ public class EffectsController : MonoBehaviour
     [SerializeField]
     GameObject effectModel;
 
+    Animator effectAnimator;
+    AudioSource effectAudioSource;
+
     [SerializeField] InteractivePickupsManager pickupsManager;
+
+    [SerializeField] float useDuration = 1.1f;
 
 
     [SerializeField] Vector2 screenOffsetF;
     [SerializeField] float cameraDistF;
 
     EffectsEnum currentEffect = default;
+
+    private void Awake()
+    {
+        effectAnimator = GetComponentInChildren<Animator>();
+        effectAudioSource = GetComponentInChildren<AudioSource>();
+
+        effectAudioSource.enabled = false;
+    }
 
     public event Action OnUse;
     public event Action OnPickup;
@@ -42,6 +55,10 @@ public class EffectsController : MonoBehaviour
     {
         currentEffect = (EffectsEnum)UnityEngine.Random.Range(1, NEffects + 1);
         effectModel.transform.position = ComputePosition();
+
+        effectAnimator.SetTrigger("reset");
+
+        effectAudioSource.enabled = false;
         effectModel.SetActive(true);
         OnPickup?.Invoke();
     }
@@ -60,11 +77,23 @@ public class EffectsController : MonoBehaviour
 
     public void Use()
     {
-        effectModel.SetActive(false);
         OnUse?.Invoke();
-        // TODO: Play animation
+
+        //effectAnimator.ResetTrigger("reset");
+        effectAnimator.SetTrigger("play");
+
+        effectAudioSource.enabled = true;
+
+        Invoke("DeactivateEffectModel", useDuration);
 
         // TODO: Apply effect to enemy
         currentEffect = EffectsEnum.NONE;
+    }
+
+    void DeactivateEffectModel()
+    {
+        effectAudioSource.enabled = false;
+        //effectAnimator.ResetTrigger("play");
+        effectModel.SetActive(false);
     }
 }
