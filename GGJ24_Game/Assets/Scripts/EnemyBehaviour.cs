@@ -17,7 +17,13 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     [SerializeField] private float frenzySpeedIncrementPercent;
     [SerializeField] private float flankSpeedIncrementPercent;
     [SerializeField] private float frenzyStartSpeedIncrementPercent;
-    
+
+    [SerializeField] private float enemyFovAngle = 60;
+    [SerializeField] private float enemyVisionRange = 100;
+    [SerializeField] private float timeHiddenThreshold = 5; 
+
+    public float EnemyFovAngle => enemyFovAngle;
+
     private bool isStateInitialized = false;
     
     private delegate void voidDelegate();
@@ -34,6 +40,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(currentState.State);
         switch (currentState.State) 
         {
             case EnemyStates.WALK:
@@ -81,6 +88,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     {
         var randomPoint = navMeshController.GetRandomPoint();
         navMeshController.SetDestination(randomPoint);
+        navMeshController.ResetSpeed();
         isStateInitialized = true;
     }
     void UpdateWalk()
@@ -145,12 +153,13 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     IEnumerator InitFrenzyCR()
     {
-        navMeshController.Stop();
-        enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
+        navMeshController.IsStopped = true;
+        //enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
         
         yield return new WaitForSeconds(1f);
         navMeshController.IncreaseSpeed(frenzyStartSpeedIncrementPercent);
         navMeshController.SetDestination(Player.Instance.Position);
+        navMeshController.IsStopped = false;
         isStateInitialized = true;
     }
 
