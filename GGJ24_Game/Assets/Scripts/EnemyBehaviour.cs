@@ -8,7 +8,7 @@ using UnityEngine.AI;
 using UnityEngine.Serialization;
 
 [RequireComponent( typeof(NavMeshController),typeof(EnemyAudioPlayer))]
-public class EnemyBehaviour : MonoBehaviour
+public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 {
     [SerializeField] 
     EnemyStateSO startState;
@@ -25,8 +25,6 @@ public class EnemyBehaviour : MonoBehaviour
     private NavMeshController navMeshController;
     private EnemyAudioPlayer enemyAudioPlayer;
     
-    //ToDO use actual player pos
-    private Vector3 playerPos = Vector3.zero;
     void Start()
     {
         navMeshController = GetComponent<NavMeshController>();
@@ -101,7 +99,7 @@ public class EnemyBehaviour : MonoBehaviour
     void UpdateFrenzy()
     {
         navMeshController.IncreaseSpeed(frenzySpeedIncrementPercent * Time.deltaTime);
-        navMeshController.SetDestination(playerPos);
+        navMeshController.SetDestination(Player.Instance.Position);
     }
     
     //Attack
@@ -117,12 +115,12 @@ public class EnemyBehaviour : MonoBehaviour
     //Flank
     void InitFlank()
     {
-        navMeshController.SetDestination(playerPos);
+        navMeshController.SetDestination(Player.Instance.Position);
     }
     void UpdateFlank()
     {
         navMeshController.IncreaseSpeed(flankSpeedIncrementPercent * Time.deltaTime);
-        navMeshController.SetDestination(playerPos);
+        navMeshController.SetDestination(Player.Instance.Position);
     }
     
     //TP
@@ -152,7 +150,7 @@ public class EnemyBehaviour : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         navMeshController.IncreaseSpeed(frenzyStartSpeedIncrementPercent);
-        navMeshController.SetDestination(playerPos);
+        navMeshController.SetDestination(Player.Instance.Position);
         isStateInitialized = true;
     }
 

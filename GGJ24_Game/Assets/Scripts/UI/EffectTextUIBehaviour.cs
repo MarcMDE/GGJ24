@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class EffectTextUIBehaviour : MonoBehaviour
 {
-    [SerializeField] EffectsController effectsController;
+    EffectsController effectsController;
     [SerializeField] GameObject container;
     void Start()
     {
+        effectsController = Player.Instance.GetComponent<EffectsController>();
         container.SetActive(false);
 
         effectsController.OnPickup += Show;

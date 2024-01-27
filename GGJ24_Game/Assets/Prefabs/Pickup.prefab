@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 5235381191037482032}
   - component: {fileID: 3009410473818998073}
   - component: {fileID: -4138705284474762339}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5235381191037482032
 Transform:
@@ -79,12 +79,12 @@ GameObject:
   - component: {fileID: 6853016859451205871}
   - component: {fileID: 7276342051254296027}
   - component: {fileID: 3771846072164352304}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6853016859451205871
 Transform:
