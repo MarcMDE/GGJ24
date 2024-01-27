@@ -10,9 +10,10 @@ public class EnemyAudioPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitList();
     }
 
-    private void InitArray()
+    private void InitList()
     {
         clipInfoArray = new List<AudioClipInfo>();
         foreach (Transform child in soundParent)
@@ -30,6 +31,4 @@ public class EnemyAudioPlayer : MonoBehaviour
         AudioClipInfo clipInfo = clipInfoArray.FirstOrDefault(info => info.AudioType == audioType);
         if(clipInfo != null) clipInfo.Play();
     }
-    
-    
 }
