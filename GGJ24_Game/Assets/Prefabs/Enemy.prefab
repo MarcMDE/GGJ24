@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 6360695351320797603}
   - component: {fileID: 776993208233277672}
   - component: {fileID: 7384008063564254693}
-  - component: {fileID: 6054829885690929167}
+  - component: {fileID: 7442905262581126069}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -340,7 +340,7 @@ MonoBehaviour:
   startState: {fileID: 11400000, guid: 48428dadc784e994ba2429cd7493ea2a, type: 2}
   frenzySpeedIncrementPercent: 1
   flankSpeedIncrementPercent: 0.5
-  frenzyStartSpeedIncrementPercent: 25
+  frenzyStartSpeedIncrementPercent: 15
   enemyFovAngle: 60
   enemyVisionRange: 100
   timeHiddenThreshold: 5
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundParent: {fileID: 2879233187128210248}
   stepsSound: {fileID: 6790643496886589442}
---- !u!54 &6054829885690929167
+--- !u!54 &7442905262581126069
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -444,7 +444,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &7265994821595329305
 GameObject:
   m_ObjectHideFlags: 0

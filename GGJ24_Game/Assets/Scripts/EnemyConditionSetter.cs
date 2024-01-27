@@ -61,7 +61,7 @@ public class EnemyConditionSetter : MonoBehaviour
         {
             EnemyTransitionConditionsContainer.Instance.Values.Melee = TriState.TRUE;
         }
-        if ((noiseLayer.value & (1 << other.gameObject.layer)) > 0)
+        if ((noiseLayer.value & (1 << other.gameObject.layer)) > 0 && EnemyBehaviour.Instance.CanTranisitonToState(EnemyStates.NOISE) )
         {
             EnemyTransitionConditionsContainer.Instance.Values.NoiseHeard = TriState.TRUE;
         }

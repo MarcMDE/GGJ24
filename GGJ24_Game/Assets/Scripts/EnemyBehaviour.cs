@@ -20,8 +20,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     [SerializeField] private float enemyFovAngle = 60;
     [SerializeField] private float enemyVisionRange = 100;
-    [SerializeField] private float timeHiddenThreshold = 5; 
-
+    [SerializeField] private float timeHiddenThreshold = 5;
     public float EnemyFovAngle => enemyFovAngle;
 
     public float CurrentSpeed => navMeshController.CurrentSpeed;
@@ -83,13 +82,22 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         }
     }
 
+    public bool CanTranisitonToState(EnemyStates state)
+    {
+        return currentState.GetPossibleStatesList().Contains(state);
+    }
+
     private void ApplyState(voidDelegate init, voidDelegate update)
     {
         if (!isStateInitialized)
         {
             init();
         }
-        update();
+        else
+        {
+            update();
+        }
+        
     }
     
     //Walk
@@ -126,13 +134,15 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     }
     void UpdateAttack()
     {
-        
+        EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.TRUE;
     }
     
     //Flank
     void InitFlank()
     {
         navMeshController.SetDestination(Player.Instance.Position);
+        navMeshController.ResetSpeed();
+        isStateInitialized = true;
     }
     void UpdateFlank()
     {
@@ -153,6 +163,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     //Noise
     void InitNoise()
     {
+        EnemyTransitionConditionsContainer.Instance.Values.NoiseHeard = TriState.FALSE;
         StartCoroutine(InitFrenzyCR());
     }
     void UpdateNoise()
@@ -166,6 +177,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         //enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
         
         yield return new WaitForSeconds(1f);
+        navMeshController.ResetSpeed();
         navMeshController.IncreaseSpeed(frenzyStartSpeedIncrementPercent);
         navMeshController.SetDestination(Player.Instance.Position);
         navMeshController.IsStopped = false;
@@ -175,7 +187,8 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     IEnumerator AttackCR()
     {
         yield return new WaitForSeconds(2f);
-        EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.TRUE;
+        
+        isStateInitialized = true;
     }
     
 }

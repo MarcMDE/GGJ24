@@ -24,4 +24,15 @@ public class EnemyStateSO : ScriptableObject
 
         return null;
     }
+
+    public List<EnemyStates> GetPossibleStatesList()
+    {
+        List<EnemyStates> enemyStatesList = new List<EnemyStates>();
+        foreach (var t in transitions)
+        {
+            enemyStatesList.Add(t.NextState.State);
+        }
+
+        return enemyStatesList;
+    }
 }
