@@ -15,16 +15,21 @@ public class NavMeshController : MonoBehaviour
     
     [SerializeField] private NavMeshSurface surface;
 
+    public float CurrentSpeed => navMeshAgent.velocity.magnitude;
+
     public bool IsStopped { set { navMeshAgent.isStopped = value; }
     } 
     
     private float destinationThreshold = 0.1f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+    }
+
+    void Start()
+    {
         normalSpeed = navMeshAgent.speed;
         destinationThreshold = capsuleCollider.radius * Mathf.Abs(transform.lossyScale.x);
     }

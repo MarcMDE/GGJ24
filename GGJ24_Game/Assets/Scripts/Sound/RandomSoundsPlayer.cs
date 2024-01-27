@@ -15,9 +15,9 @@ public class RandomSoundsPlayer : MonoBehaviour
 
     AudioSource audioSource;
 
-    public bool UseMaxSoundTime 
-    { 
-        get { return useMaxSoundTime; } 
+    public bool UseMaxSoundTime
+    {
+        get { return useMaxSoundTime; }
         set { useMaxSoundTime = value; }
     }
 
@@ -26,6 +26,8 @@ public class RandomSoundsPlayer : MonoBehaviour
         get { return maxSoundTime; }
         set { maxSoundTime = value; }
     }
+
+    public float Volume { set { audioSource.volume = value; } }
 
     bool shouldPlay = false;
 
@@ -56,6 +58,11 @@ public class RandomSoundsPlayer : MonoBehaviour
     {
         if (shouldPlay)
         {
+            if (useMaxSoundTime)
+            {
+                if (audioSource.time > maxSoundTime) audioSource.Stop();
+            }
+            
             if (!audioSource.isPlaying)
             {
                 if (!useDelayBetweenClips)
@@ -66,10 +73,6 @@ public class RandomSoundsPlayer : MonoBehaviour
                 {
                     StartCoroutine(PlayNewClipDelayedCoroutine());
                 }
-            }
-            else if (useMaxSoundTime)
-            {
-                if (audioSource.time > maxSoundTime) audioSource.Stop();
             }
         }
     }
