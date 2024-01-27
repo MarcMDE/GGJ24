@@ -228,18 +228,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &297377816 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6874303505173228816, guid: 5800fd396ff56a44fbfc2c76fca42902,
-    type: 3}
-  m_PrefabInstance: {fileID: 7257981940837625487}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6631e6a53f294b44b3e5c5a31a6909e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &405331028
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,11 +810,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 165353949561602858, guid: 5104cb4c30531b345944643143bab3bc,
-        type: 3}
-      propertyPath: effectsController
-      value: 
-      objectReference: {fileID: 297377816}
     - target: {fileID: 1159595523651541088, guid: 5104cb4c30531b345944643143bab3bc,
         type: 3}
       propertyPath: m_Name
@@ -942,11 +925,6 @@ PrefabInstance:
       propertyPath: switchBehaviour
       value: 
       objectReference: {fileID: 2134406999}
-    - target: {fileID: 8859009850781845889, guid: 5104cb4c30531b345944643143bab3bc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -960,6 +938,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1247219767822456912, guid: 07a5cadc463a247439726078231d3bc9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2606777968192158895, guid: 07a5cadc463a247439726078231d3bc9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1014,6 +997,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoorSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8748860592412084810, guid: 07a5cadc463a247439726078231d3bc9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1104,26 +1092,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 630855169792936647, guid: 5800fd396ff56a44fbfc2c76fca42902,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955942287621584522, guid: 5800fd396ff56a44fbfc2c76fca42902,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449413121274414230, guid: 5800fd396ff56a44fbfc2c76fca42902,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4838996655062165001, guid: 5800fd396ff56a44fbfc2c76fca42902,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838996655062165001, guid: 5800fd396ff56a44fbfc2c76fca42902,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032573348183451590, guid: 5800fd396ff56a44fbfc2c76fca42902,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6874303505173228816, guid: 5800fd396ff56a44fbfc2c76fca42902,
         type: 3}
       propertyPath: pickupsManager
       value: 
       objectReference: {fileID: 1368518188}
-    - target: {fileID: 6874303505173228816, guid: 5800fd396ff56a44fbfc2c76fca42902,
-        type: 3}
-      propertyPath: screenOffsetF.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6874303505173228816, guid: 5800fd396ff56a44fbfc2c76fca42902,
-        type: 3}
-      propertyPath: screenOffsetF.y
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 9086361506551579452, guid: 5800fd396ff56a44fbfc2c76fca42902,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 4830328240796399133}
   - component: {fileID: 5887488513212937525}
   - component: {fileID: 6874303505173228816}
+  - component: {fileID: 3522808944144850471}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -186,8 +187,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectModel: {fileID: 3449413121274414230}
-  screenOffsetF: {x: 0.2, y: 0.25}
+  pickupsManager: {fileID: 0}
+  screenOffsetF: {x: 0.2, y: 0.3}
   cameraDistF: 1
+--- !u!114 &3522808944144850471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838996655062165001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3930308830e8e0247a0411a472da3105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  recoveringDelay: 5
+  recoverPerSec: 5
 --- !u!1 &6032573348183451590
 GameObject:
   m_ObjectHideFlags: 0
