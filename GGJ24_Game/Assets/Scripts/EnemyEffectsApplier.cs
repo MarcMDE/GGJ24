@@ -10,6 +10,9 @@ public class EnemyEffectsApplier : MonoBehaviour
 {
     const int NEffects = 7;
 
+    [SerializeField] private float terrorFunnyMusicChange = 0.4f;
+    [SerializeField] private float funnyMusicChange = 0.8f;
+
     [SerializeField] Transform enemyModel;
 
     [SerializeField] Transform leftLeg, rightLeg;
@@ -47,6 +50,21 @@ public class EnemyEffectsApplier : MonoBehaviour
         }
     }
 
+    void TriggerMusicChanges()
+    {
+        if (GameProgress() > terrorFunnyMusicChange)
+        {
+            if (GameProgress() < funnyMusicChange)
+            {
+                MusicFlow.Instance.TryPlayMusic(MusicTrackNames.TerrorFunny);
+            }
+            else
+            {
+                MusicFlow.Instance.TryPlayMusic(MusicTrackNames.Funny);
+            }
+        }
+    }
+
     float GameProgress()
     {
         return 1f - effectsLeft.Count / NEffects;
@@ -61,6 +79,8 @@ public class EnemyEffectsApplier : MonoBehaviour
             effect = effectsLeft.First();
             effectsLeft.RemoveAt(0);
         }
+        
+        TriggerMusicChanges();
 
         Debug.Log($"{effectsLeft.Count}-{effect}");
 
