@@ -1011,6 +1011,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: MockEnvironment
       objectReference: {fileID: 0}
+    - target: {fileID: 6757489651962859387, guid: 0597206317b978b4495275e7220cdff3,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: edce9683a23d21d468950b295862a673,
+        type: 2}
+    - target: {fileID: 6757489651962859387, guid: 0597206317b978b4495275e7220cdff3,
+        type: 3}
+      propertyPath: m_LayerMask.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

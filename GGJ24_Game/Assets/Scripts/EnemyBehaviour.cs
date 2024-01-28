@@ -219,7 +219,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     IEnumerator AttackCR()
     {
-        
+        navMeshController.IsStopped = true;
         
         SetAnimation(AnimatorStates.Attack);
         
@@ -230,6 +230,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         yield return new WaitForSeconds(time * 0.9f);
         
         isStateInitialized = true;
+        navMeshController.IsStopped = false;
     }
 
     private void SetAnimation(AnimatorStates state)
