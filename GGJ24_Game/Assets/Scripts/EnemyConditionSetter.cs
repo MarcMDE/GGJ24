@@ -30,7 +30,7 @@ public class EnemyConditionSetter : MonoBehaviour
     void Update()
     {
         var viewPlayer = CheckViewPlayer();
-        var viewedByPlayer = CheckViewedByPlayer();
+        var viewedByPlayer = EnemyTransitionConditionsContainer.Instance.Values.Melee == TriState.TRUE || CheckViewedByPlayer();
 
         EnemyTransitionConditionsContainer.Instance.Values.ViewPlayer = CheckExtraAggro() || viewPlayer ? TriState.TRUE : TriState.FALSE;
         EnemyTransitionConditionsContainer.Instance.Values.ViewedByPlayer = viewedByPlayer ? TriState.TRUE : TriState.FALSE;

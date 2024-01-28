@@ -574,7 +574,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -668,6 +668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f567ab4989fd6c449b4d431b28bb750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  terrorFunnyMusicChange: 0.4
+  funnyMusicChange: 0.8
   enemyModel: {fileID: 6418203029837271630}
   leftLeg: {fileID: 7569189259059893392}
   rightLeg: {fileID: 8766125758965026658}
