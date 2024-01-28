@@ -21,6 +21,10 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     [SerializeField] private float enemyFovAngle = 60;
     [SerializeField] private float enemyVisionRange = 100;
     [SerializeField] private float timeHiddenThreshold = 5;
+    [SerializeField] private float startDamage = 60;
+    [SerializeField] private float damageReduction = 20;
+    [SerializeField] private float minDamage = 20;
+    private float enemyDamage;
     
     [SerializeField] private EnemyStates[] statesWithAggroDropDelay;
     [SerializeField] private float aggroDropDelay = 0.25f;
@@ -52,6 +56,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     void Start()
     {
+        enemyDamage = startDamage;
         currentState = startState;
     }
 
@@ -92,6 +97,11 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
             EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.FALSE;
             Debug.Log(currentState.State);
         }
+    }
+
+    public void ReduceDamage()
+    {
+        enemyDamage = Mathf.Min(enemyDamage - damageReduction, minDamage);
     }
 
     public bool CanTranisitonToState(EnemyStates state)
@@ -227,7 +237,9 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         var time = stateInfo.length;
         
-        yield return new WaitForSeconds(time * 0.9f);
+        yield return new WaitForSeconds(time * 0.15f);
+        Player.Instance.GetComponent<PlayerHP>().SufferDamage(enemyDamage);
+        yield return new WaitForSeconds(time * 0.75f);
         
         isStateInitialized = true;
         navMeshController.IsStopped = false;
