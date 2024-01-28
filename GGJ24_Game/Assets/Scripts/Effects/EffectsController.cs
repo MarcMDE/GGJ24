@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class EffectsController : MonoBehaviour
 {
-    const int NEffects = 5;
-
     [SerializeField]
     GameObject effectModel;
 
@@ -21,7 +19,7 @@ public class EffectsController : MonoBehaviour
     [SerializeField] Vector2 screenOffsetF;
     [SerializeField] float cameraDistF;
 
-    EffectsEnum currentEffect = default;
+    bool hasEffect = false;
 
     private void Awake()
     {
@@ -37,7 +35,6 @@ public class EffectsController : MonoBehaviour
 
     void Start()
     {
-        currentEffect = EffectsEnum.NONE;
         effectModel.SetActive(false);
         
         pickupsManager.OnComplete += Pickup;
@@ -45,7 +42,7 @@ public class EffectsController : MonoBehaviour
 
     void Update()
     {
-        if (currentEffect != EffectsEnum.NONE && Input.GetButtonDown("Interact"))
+        if (hasEffect && Input.GetButtonDown("Interact"))
         {
             Use();
         }
@@ -53,11 +50,10 @@ public class EffectsController : MonoBehaviour
 
     public void Pickup()
     {
-        currentEffect = (EffectsEnum)UnityEngine.Random.Range(1, NEffects + 1);
         effectModel.transform.position = ComputePosition();
 
         effectAnimator.SetTrigger("reset");
-
+        hasEffect = true;
         effectAudioSource.enabled = false;
         effectModel.SetActive(true);
         OnPickup?.Invoke();
@@ -86,8 +82,10 @@ public class EffectsController : MonoBehaviour
 
         Invoke("DeactivateEffectModel", useDuration);
 
+        EnemyBehaviour.Instance.GetComponent<EnemyEffectsApplier>().ApplyRandomEffect();
+
         // TODO: Apply effect to enemy
-        currentEffect = EffectsEnum.NONE;
+        hasEffect = false;
     }
 
     void DeactivateEffectModel()
