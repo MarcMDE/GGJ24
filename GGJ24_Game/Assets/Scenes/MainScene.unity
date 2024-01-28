@@ -1335,7 +1335,20 @@ PrefabInstance:
       value: Mapa
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2652470558547150019, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 963350865450749319, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 8695943266998345234, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 2195177467172562455, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 8150779489321224318, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 1833397637646115258, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 5013342673757189492, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 3833100636969663815, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 7282435125643316591, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 5908731192417881659, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 673024117144726363, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 2114179775210108532, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
+    - {fileID: 8781221233561022149, guid: ba85bf91a04a8ff428aed7813b93d251, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8935119961926906517, guid: ba85bf91a04a8ff428aed7813b93d251,
         type: 3}
@@ -1846,6 +1859,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7426173508595123511, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
+      propertyPath: duckSounds
+      value: 
+      objectReference: {fileID: 11400000, guid: 6990cbc28c0643044a9da3af9295185a,
+        type: 2}
+    - target: {fileID: 7426173508595123511, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: stepsSoudns
+      value: 
+      objectReference: {fileID: 6103796485679158245}
+    - target: {fileID: 7426173508595123511, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
       propertyPath: particlesPrefab
       value: 
       objectReference: {fileID: 955162775980057544, guid: 6a519d11310294910a45e091f7f8d183,
@@ -1855,6 +1879,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c240adcbec5ea0941a0e513a0c3b0909, type: 3}
+--- !u!114 &6103796485679158245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6790643496886589442, guid: c240adcbec5ea0941a0e513a0c3b0909,
+    type: 3}
+  m_PrefabInstance: {fileID: 6103796485679158244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb6ff4735cfbab488eb4b5fd80cd218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7630443201669455877
 PrefabInstance:
   m_ObjectHideFlags: 0
