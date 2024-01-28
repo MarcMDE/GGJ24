@@ -226,7 +226,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         var time = stateInfo.length;
         
-        yield return new WaitForSeconds(time * 0.9f);
+        yield return new WaitForSeconds(time * 0.8f);
         
         SetAnimation(AnimatorStates.Run);
 
