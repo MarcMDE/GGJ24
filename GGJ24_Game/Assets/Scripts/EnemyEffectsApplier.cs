@@ -27,7 +27,7 @@ public class EnemyEffectsApplier : MonoBehaviour
         for (int i=1; i<=NEffects; i++)
         {
             if (Random.Range(0, 2) > 0)
-                effectsLeft.Append((EffectsEnum)i);
+                effectsLeft.Add((EffectsEnum)i);
             else
                 effectsLeft.Insert(0, (EffectsEnum)i);
         }
@@ -53,8 +53,8 @@ public class EnemyEffectsApplier : MonoBehaviour
 
                 hasLegsEffect = true;
 
-                if (hasSmolEffect) enemyModel.transform.position = Vector3.down * 0.86f;
-                else enemyModel.transform.position = Vector3.down * 0.65f;
+                if (hasSmolEffect) enemyModel.transform.localPosition = Vector3.down * 0.86f;
+                else enemyModel.transform.localPosition = Vector3.down * 0.65f;
                 // H: 0.35
                 // H: 0.14
                 break;
@@ -71,8 +71,8 @@ public class EnemyEffectsApplier : MonoBehaviour
                 hips.localScale = Vector3.one * 0.6f;
 
                 hasSmolEffect = true;
-                if (hasLegsEffect) enemyModel.transform.position = Vector3.down * 0.86f;
-                else enemyModel.transform.position = Vector3.down * 0.46f;
+                if (hasLegsEffect) enemyModel.transform.localPosition = Vector3.down * 0.86f;
+                else enemyModel.transform.localPosition = Vector3.down * 0.46f;
                 // H: 0.54
                 // H: 0.14
                 break;
