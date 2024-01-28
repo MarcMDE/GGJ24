@@ -23,7 +23,7 @@ public class PlayerHP : MonoBehaviour
         currentHP = maxHP;
     }
 
-    private void SufferDamage(float d)
+    public void SufferDamage(float d)
     {
         currentHP -= d;
 
