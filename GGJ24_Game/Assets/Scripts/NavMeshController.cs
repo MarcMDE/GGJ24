@@ -7,6 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent),typeof(CapsuleCollider))]
 public class NavMeshController : MonoBehaviour
 {
+    NavMeshBuildSettings navMeshSettings;
     
 
     private NavMeshAgent navMeshAgent;
@@ -27,6 +28,7 @@ public class NavMeshController : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        navMeshSettings = NavMesh.GetSettingsByIndex(0);
     }
 
     void Start()
