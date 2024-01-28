@@ -145,8 +145,8 @@ MonoBehaviour:
   useDelayBetweenClips: 0
   minDelayBetweenClips: 0
   maxDelayBetweenClips: 0
-  useMaxSoundTime: 1
-  maxSoundTime: 1
+  useMaxSoundTime: 0
+  maxSoundTime: 0
 --- !u!1 &6490454988539740336
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 360
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -255,12 +255,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startState: {fileID: 11400000, guid: 48428dadc784e994ba2429cd7493ea2a, type: 2}
-  frenzySpeedIncrementPercent: 1
-  flankSpeedIncrementPercent: 0.5
-  frenzyStartSpeedIncrementPercent: 15
+  frenzySpeedIncrementPercent: 0
+  flankSpeedIncrementPercent: 0
+  frenzyStartSpeedIncrementPercent: 25
   enemyFovAngle: 60
   enemyVisionRange: 100
   timeHiddenThreshold: 5
+  statesWithAggroDropDelay: 01000000
+  aggroDropDelay: 1.5
   animator: {fileID: 8210421733036324931}
 --- !u!136 &8072408155793135352
 CapsuleCollider:
@@ -484,7 +486,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
