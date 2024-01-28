@@ -1,11 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.AI.Navigation;
-using UnityEditor;
-using UnityEditor.Toolbars;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 [RequireComponent( typeof(NavMeshController),typeof(EnemyAudioPlayer))]
 public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
