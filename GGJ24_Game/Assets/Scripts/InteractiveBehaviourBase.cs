@@ -19,7 +19,7 @@ public class InteractiveBehaviourBase : MonoBehaviour
     public event UnityAction OnComplete;
     public event UnityAction OnCancel;
 
-    void Start()
+    protected virtual void Start()
     {
         
     }
@@ -32,6 +32,8 @@ public class InteractiveBehaviourBase : MonoBehaviour
         {
             if (Input.GetButton("Interact"))
             {
+                if (!isInteracting) StartInteraction();
+                
                 isInteracting = true;
 
                 interactionCounter += Time.deltaTime;
@@ -55,6 +57,12 @@ public class InteractiveBehaviourBase : MonoBehaviour
             CancelInteraction();
         }
     }
+
+    protected virtual void StartInteraction()
+    {
+        
+    }
+    
 
     protected virtual void CancelInteraction()
     {

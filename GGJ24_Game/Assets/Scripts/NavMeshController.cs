@@ -7,14 +7,16 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent),typeof(CapsuleCollider))]
 public class NavMeshController : MonoBehaviour
 {
+    NavMeshBuildSettings navMeshSettings;
     
 
     private NavMeshAgent navMeshAgent;
     private CapsuleCollider capsuleCollider;
-    private float normalSpeed;
+    private float baseSpeed;
     
     [SerializeField] private NavMeshSurface surface;
 
+    public float BaseSpeed => baseSpeed;
     public float CurrentSpeed => navMeshAgent.velocity.magnitude;
 
     public bool IsStopped { set { navMeshAgent.isStopped = value; }
@@ -26,11 +28,12 @@ public class NavMeshController : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        navMeshSettings = NavMesh.GetSettingsByIndex(0);
     }
 
     void Start()
     {
-        normalSpeed = navMeshAgent.speed;
+        baseSpeed = navMeshAgent.speed;
         destinationThreshold = capsuleCollider.radius * Mathf.Abs(transform.lossyScale.x);
     }
 
@@ -62,10 +65,14 @@ public class NavMeshController : MonoBehaviour
         var value = 1 + percentIncrement / 100;
         navMeshAgent.speed *= value;
     }
+    public void SetSpeed(float value)
+    {
+        navMeshAgent.speed = value;
+    }
 
     public void ResetSpeed()
     {
-        navMeshAgent.speed = normalSpeed;
+        navMeshAgent.speed = baseSpeed;
     }
     
 }
