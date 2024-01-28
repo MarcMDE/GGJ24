@@ -55,6 +55,7 @@ public class EnemyEffectsApplier : MonoBehaviour
 
     void TriggerMusicChanges()
     {
+        Debug.Log(GameProgress());
         if (GameProgress() > terrorFunnyMusicChange)
         {
             if (GameProgress() < funnyMusicChange)
@@ -70,7 +71,7 @@ public class EnemyEffectsApplier : MonoBehaviour
 
     float GameProgress()
     {
-        return 1f - effectsLeft.Count / NEffects;
+        return 1f - (float)effectsLeft.Count / (float)NEffects;
     }
 
     public void ApplyRandomEffect()
@@ -89,6 +90,9 @@ public class EnemyEffectsApplier : MonoBehaviour
 
         switch (effect)
         {
+            case EffectsEnum.NONE:
+                head.localScale += Vector3.one * 1.5f;
+                break;
             case EffectsEnum.SHORTLEGS:
                 leftLeg.localScale = Vector3.one * 0.6f;
                 rightLeg.localScale = Vector3.one * 0.6f;
