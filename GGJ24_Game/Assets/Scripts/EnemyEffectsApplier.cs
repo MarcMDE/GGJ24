@@ -43,6 +43,8 @@ public class EnemyEffectsApplier : MonoBehaviour
             effectsLeft.RemoveAt(0);
         }
 
+        Debug.Log($"{effectsLeft.Count}-{effect}");
+
         switch (effect)
         {
             case EffectsEnum.SHORTLEGS:
