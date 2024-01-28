@@ -15,7 +15,15 @@ public class FinishLogic : MonoBehaviour
         Player.Instance.GetComponent<PlayerHP>().OnDead += Lose;
         doorSwitch.OnComplete += Win;
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
     void Lose()
     {
         if (hasFinished) return;
@@ -30,7 +38,12 @@ public class FinishLogic : MonoBehaviour
         if (hasFinished) return;
         hasFinished = true;
         EnemyBehaviour.Instance.enabled = false;
-        Invoke("ReloadScene", 4f);
+        Invoke("GoToMenu", 4f);
+    }
+
+    void GoToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     void ReloadScene()

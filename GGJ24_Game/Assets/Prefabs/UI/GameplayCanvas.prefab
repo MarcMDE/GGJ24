@@ -114,6 +114,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3923298040352022961}
     m_Modifications:
+    - target: {fileID: 4343746832809695246, guid: 88ddc7f1513f1854c8468af6cf0037d3,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4405431083582195690, guid: 88ddc7f1513f1854c8468af6cf0037d3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -217,7 +222,7 @@ PrefabInstance:
     - target: {fileID: 7765008560402873209, guid: 88ddc7f1513f1854c8468af6cf0037d3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7906252136575753031, guid: 88ddc7f1513f1854c8468af6cf0037d3,
         type: 3}
@@ -227,7 +232,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7765008560402873209, guid: 88ddc7f1513f1854c8468af6cf0037d3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2477575991352534657}
   m_SourcePrefab: {fileID: 100100000, guid: 88ddc7f1513f1854c8468af6cf0037d3, type: 3}
 --- !u!224 &3175143953620432146 stripped
 RectTransform:
@@ -235,6 +244,33 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1239436167559508728}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8859009850781845889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7765008560402873209, guid: 88ddc7f1513f1854c8468af6cf0037d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1239436167559508728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2477575991352534657
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8859009850781845889}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c06afb1816d7fb740b6b352e89d209f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1440617897153995352
 PrefabInstance:
   m_ObjectHideFlags: 0

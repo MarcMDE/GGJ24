@@ -32,24 +32,45 @@ public class EffectsController : MonoBehaviour
     public event Action OnUse;
     public event Action OnPickup;
 
+    public event Action OnCanUse;
+    public event Action OnCantUse;
+
+    bool canUse = false;
+    Transform enemy;
+
 
     void Start()
     {
         effectModel.SetActive(false);
+        enemy = EnemyBehaviour.Instance.transform;
         
         pickupsManager.OnComplete += Pickup;
     }
 
     void Update()
     {
-        if (hasEffect && Input.GetButtonDown("Interact"))
+        if (hasEffect)
         {
-            Use();
+            var prevCanUse = canUse;
+            canUse = EnemyClose();
+
+            if (!prevCanUse && canUse) OnCanUse?.Invoke();
+            else if (prevCanUse && !canUse) OnCantUse?.Invoke();
+
+            if (Input.GetButtonDown("Interact") && canUse)
+                Use();
         }
+    }
+
+    bool EnemyClose()
+    {
+        return (Vector3.SqrMagnitude(transform.position - enemy.position) < 300f);
     }
 
     public void Pickup()
     {
+        canUse = false;
+
         effectModel.transform.position = ComputePosition();
 
         effectAnimator.SetTrigger("reset");
@@ -57,6 +78,7 @@ public class EffectsController : MonoBehaviour
         effectAudioSource.enabled = false;
         effectModel.SetActive(true);
         OnPickup?.Invoke();
+        OnCantUse?.Invoke();
     }
 
     private Vector3 ComputePosition()

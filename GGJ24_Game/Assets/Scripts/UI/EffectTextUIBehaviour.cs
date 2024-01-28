@@ -13,6 +13,9 @@ public class EffectTextUIBehaviour : MonoBehaviour
 
         effectsController.OnPickup += Show;
         effectsController.OnUse += Hide;
+
+        effectsController.OnCanUse += Show;
+        effectsController.OnCantUse += Hide;
     }
 
     void Update()
