@@ -16,7 +16,7 @@ MonoBehaviour:
   transitionConditions:
     ViewPlayer: 0
     ViewedByPlayer: 1
-    Melee: 0
+    Melee: 1
     EnoughTimeHidden: 0
     NoiseHeard: 2
     StateFinished: 0

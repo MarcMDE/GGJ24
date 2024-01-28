@@ -552,7 +552,7 @@ MonoBehaviour:
   startDamage: 60
   damageReduction: 20
   minDamage: 20
-  statesWithAggroDropDelay: 01000000
+  statesWithAggroDropDelay: 0100000004000000
   aggroDropDelay: 1.5
   animator: {fileID: 8210421733036324931}
 --- !u!136 &8072408155793135352
