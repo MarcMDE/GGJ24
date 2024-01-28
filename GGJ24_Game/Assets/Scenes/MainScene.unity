@@ -53866,6 +53866,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
+      propertyPath: frenzySpeedReduction
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: frenzyStartSpeedValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
       propertyPath: frenzyStartSpeedIncrementPercent
       value: 42.85
       objectReference: {fileID: 0}
