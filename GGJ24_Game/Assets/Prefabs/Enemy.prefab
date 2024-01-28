@@ -387,6 +387,10 @@ MonoBehaviour:
   rightLeg: {fileID: 8766125758965026658}
   hips: {fileID: 126882301682442880}
   head: {fileID: 2856434410118998761}
+  cone: {fileID: 3336047432938344614}
+  leftClaw: {fileID: 4549566025773591835}
+  rightClaw: {fileID: 5000880912168360168}
+  flotador: {fileID: 1369312898448281966}
 --- !u!1 &7265994821595329305
 GameObject:
   m_ObjectHideFlags: 0

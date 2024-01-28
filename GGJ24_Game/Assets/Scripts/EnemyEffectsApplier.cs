@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ using UnityEngine;
 
 public class EnemyEffectsApplier : MonoBehaviour
 {
-    const int NEffects = 5;
+    const int NEffects = 7;
 
     [SerializeField] Transform enemyModel;
 
@@ -17,6 +18,14 @@ public class EnemyEffectsApplier : MonoBehaviour
 
     [SerializeField] Transform head;
 
+    [SerializeField] Transform cone;
+
+    [SerializeField] Transform leftClaw;
+
+    [SerializeField] Transform rightClaw;
+
+    [SerializeField] Transform flotador;
+
     bool hasLegsEffect = false;
     bool hasSmolEffect = false;
 
@@ -24,6 +33,11 @@ public class EnemyEffectsApplier : MonoBehaviour
 
     private void Start()
     {
+        cone.gameObject.SetActive(false);
+        leftClaw.gameObject.SetActive(false);
+        rightClaw.gameObject.SetActive(false);
+        flotador.gameObject.SetActive(false);
+
         for (int i=1; i<=NEffects; i++)
         {
             if (Random.Range(0, 2) > 0)
@@ -48,33 +62,46 @@ public class EnemyEffectsApplier : MonoBehaviour
         switch (effect)
         {
             case EffectsEnum.SHORTLEGS:
-                leftLeg.localScale = Vector3.one * 0.4f;
-                rightLeg.localScale = Vector3.one * 0.4f;
+                leftLeg.localScale = Vector3.one * 0.6f;
+                rightLeg.localScale = Vector3.one * 0.6f;
 
                 hasLegsEffect = true;
 
-                if (hasSmolEffect) enemyModel.transform.localPosition = Vector3.down * 0.86f;
-                else enemyModel.transform.localPosition = Vector3.down * 0.65f;
+                if (hasSmolEffect) enemyModel.transform.localPosition = Vector3.down * 0.63f;
+                else enemyModel.transform.localPosition = Vector3.down * 0.415f;
+
+                EnemyBehaviour.Instance.ReduceFrenzySpeed();
                 // H: 0.35
                 // H: 0.14
                 break;
             case EffectsEnum.NO_WEAPON_1:
-                head.localScale += Vector3.one * 2f + Vector3.right * 1.2f;
+                leftClaw.gameObject.SetActive(true);
+                EnemyBehaviour.Instance.ReduceDamage();
                 break;
             case EffectsEnum.NO_WEAPON_2:
-                head.localScale += Vector3.one * 2f + Vector3.right * 1.2f;
+                rightClaw.gameObject.SetActive(true);
+                EnemyBehaviour.Instance.ReduceDamage();
                 break;
             case EffectsEnum.RIDICUOLOUS:
-                head.localScale += Vector3.one * 2f + Vector3.right * 1.2f;
+                head.localScale = Vector3.one * 2.5f;
                 break;
             case EffectsEnum.SMOL:
-                hips.localScale = Vector3.one * 0.6f;
+                hips.localScale = Vector3.one * 0.7f;
 
                 hasSmolEffect = true;
-                if (hasLegsEffect) enemyModel.transform.localPosition = Vector3.down * 0.86f;
-                else enemyModel.transform.localPosition = Vector3.down * 0.46f;
+                if (hasLegsEffect) enemyModel.transform.localPosition = Vector3.down * 0.63f;
+                else enemyModel.transform.localPosition = Vector3.down * 0.32f;
+
+                //EnemyBehaviour.Instance.ReduceDamage();
                 // H: 0.54
                 // H: 0.14
+                break;
+            case EffectsEnum.CONO:
+                cone.gameObject.SetActive(true);
+                EnemyBehaviour.Instance.ReduceFrenzySpeed();
+                break;
+            case EffectsEnum.FLOTADOR:
+                flotador.gameObject.SetActive(true);
                 break;
             default:
                 break;
