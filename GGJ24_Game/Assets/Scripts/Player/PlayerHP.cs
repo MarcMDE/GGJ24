@@ -15,11 +15,13 @@ public class PlayerHP : MonoBehaviour
     public event UnityAction<float> OnRecovering;
 
     float currentHP;
+    bool isDead = false;
 
     public float HP => currentHP;
 
     private void Start()
     {
+        isDead = false;
         currentHP = maxHP;
     }
 
@@ -32,7 +34,9 @@ public class PlayerHP : MonoBehaviour
         if (currentHP < 0f)
         {
             currentHP = 0f;
-            OnDead?.Invoke();
+            if (!isDead)
+                OnDead?.Invoke();
+            isDead = true;
         }
         else
         {
