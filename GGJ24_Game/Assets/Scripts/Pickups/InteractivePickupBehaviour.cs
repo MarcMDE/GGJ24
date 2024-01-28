@@ -5,12 +5,14 @@ using UnityEngine.Serialization;
 
 public class InteractivePickupBehaviour : InteractiveBehaviourBase
 {
+    [SerializeField] GameObject modelObject;
+
     [FormerlySerializedAs("noiseCollider")] [SerializeField] private SphereCollider soundRadius;
     protected override void CompleteInteraction()
     {
         base.CompleteInteraction();
 
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        modelObject.SetActive(false);
         GetComponent<AudioSource>().enabled = true;
         StartCoroutine(BroadcastNoise());
         Invoke("Destroy", 2.9f);

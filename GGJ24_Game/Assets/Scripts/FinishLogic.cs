@@ -15,11 +15,13 @@ public class FinishLogic : MonoBehaviour
     
     void Lose()
     {
+        Player.Instance.GetComponent<PlayerController>().enabled = false;
         Invoke("ReloadScene", 4f);
     }
 
     void Win()
     {
+        EnemyBehaviour.Instance.enabled = false;
         Invoke("ReloadScene", 4f);
     }
 

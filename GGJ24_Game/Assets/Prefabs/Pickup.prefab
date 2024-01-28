@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDuration: 1.5
+  modelObject: {fileID: 864372653958051382}
   soundRadius: {fileID: 3711395949057620543}
 --- !u!82 &7032644162733074738
 AudioSource:
@@ -316,6 +317,12 @@ PrefabInstance:
 --- !u!4 &50963420409457804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 401731663700042327, guid: 340c1cbcbad8b584aad46241e599c03a,
+    type: 3}
+  m_PrefabInstance: {fileID: 371039150307364571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &864372653958051382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1069864934448199917, guid: 340c1cbcbad8b584aad46241e599c03a,
     type: 3}
   m_PrefabInstance: {fileID: 371039150307364571}
   m_PrefabAsset: {fileID: 0}
