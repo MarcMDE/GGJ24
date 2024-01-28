@@ -148,7 +148,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         navMeshController.ResetSpeed();
         isStateInitialized = true;
         SetAnimation(AnimatorStates.Walk);
-
+        MusicFlow.Instance.TryPlayMusic(MusicTrackNames.Ambience);
     }
     void UpdateWalk()
     {
@@ -222,6 +222,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
         //Debug.Log("Init frenzy CR");
         enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
+        MusicFlow.Instance.TryPlayMusic(MusicTrackNames.Chase);
 
         SetAnimation(AnimatorStates.Scream);
         
