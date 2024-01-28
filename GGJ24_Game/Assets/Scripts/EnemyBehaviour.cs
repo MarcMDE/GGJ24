@@ -97,7 +97,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         }
         
         var nextState = currentState.NextState();
-        if (nextState != null)
+        if (nextState != null && isStateInitialized)
         {
             currentState = nextState;
             isStateInitialized = false;
@@ -260,7 +260,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         yield return new WaitForSeconds(time * 0.15f);
         Player.Instance.GetComponent<PlayerHP>().SufferDamage(enemyDamage);
         yield return new WaitForSeconds(time * 0.75f);
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
         
         isStateInitialized = true;
         navMeshController.IsStopped = false;
