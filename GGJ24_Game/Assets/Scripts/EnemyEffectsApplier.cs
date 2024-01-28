@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class EnemyEffectsApplier : MonoBehaviour
 {
-    const int NEffects = 7;
+    const int NEffects = 8;
 
     [SerializeField] private float terrorFunnyMusicChange = 0.4f;
     [SerializeField] private float funnyMusicChange = 0.8f;
@@ -29,7 +29,12 @@ public class EnemyEffectsApplier : MonoBehaviour
 
     [SerializeField] Transform flotador;
 
+    [SerializeField] Transform duck1, duck2;
+
     [SerializeField] GameObject particlesPrefab;
+
+    [SerializeField] SoundsCollectionSO duckSounds;
+    [SerializeField] RandomSoundsPlayer stepsSoudns;
 
     bool hasLegsEffect = false;
     bool hasSmolEffect = false;
@@ -45,6 +50,8 @@ public class EnemyEffectsApplier : MonoBehaviour
         leftClaw.gameObject.SetActive(false);
         rightClaw.gameObject.SetActive(false);
         flotador.gameObject.SetActive(false);
+        duck1.gameObject.SetActive(false);
+        duck2.gameObject.SetActive(false);
 
         for (int i=1; i<=NEffects; i++)
         {
@@ -90,8 +97,6 @@ public class EnemyEffectsApplier : MonoBehaviour
         }
         
         TriggerMusicChanges();
-
-        Debug.Log($"{effectsLeft.Count}-{effect}");
 
         switch (effect)
         {
@@ -142,6 +147,13 @@ public class EnemyEffectsApplier : MonoBehaviour
                 break;
             case EffectsEnum.FLOTADOR:
                 flotador.gameObject.SetActive(true);
+                break;
+            case EffectsEnum.DUCK:
+                duck1.gameObject.SetActive(true);
+                duck2.gameObject.SetActive(true);
+                stepsSoudns.SetSoundsCollection(duckSounds);
+                stepsSoudns.UseMaxSoundTime = true;
+                stepsSoudns.MaxSoundTime = 0.5f;
                 break;
             default:
                 break;

@@ -15,6 +15,11 @@ public class RandomSoundsPlayer : MonoBehaviour
 
     AudioSource audioSource;
 
+    public void SetSoundsCollection(SoundsCollectionSO s)
+    {
+        soundsCollection = s;
+    }
+
     public bool UseMaxSoundTime
     {
         get { return useMaxSoundTime; }
