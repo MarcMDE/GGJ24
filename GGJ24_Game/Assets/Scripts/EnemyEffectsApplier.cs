@@ -9,11 +9,16 @@ public class EnemyEffectsApplier : MonoBehaviour
 {
     const int NEffects = 5;
 
+    [SerializeField] Transform enemyModel;
+
     [SerializeField] Transform leftLeg, rightLeg;
 
     [SerializeField] Transform hips;
 
     [SerializeField] Transform head;
+
+    bool hasLegsEffect = false;
+    bool hasSmolEffect = false;
 
     List<EffectsEnum> effectsLeft = new List<EffectsEnum>();
 
@@ -43,6 +48,13 @@ public class EnemyEffectsApplier : MonoBehaviour
             case EffectsEnum.SHORTLEGS:
                 leftLeg.localScale = Vector3.one * 0.4f;
                 rightLeg.localScale = Vector3.one * 0.4f;
+
+                hasLegsEffect = true;
+
+                if (hasSmolEffect) enemyModel.transform.position = Vector3.down * 0.86f;
+                else enemyModel.transform.position = Vector3.down * 0.65f;
+                // H: 0.35
+                // H: 0.14
                 break;
             case EffectsEnum.NO_WEAPON_1:
                 head.localScale += Vector3.one * 2f + Vector3.right * 1.2f;
@@ -55,6 +67,12 @@ public class EnemyEffectsApplier : MonoBehaviour
                 break;
             case EffectsEnum.SMOL:
                 hips.localScale = Vector3.one * 0.6f;
+
+                hasSmolEffect = true;
+                if (hasLegsEffect) enemyModel.transform.position = Vector3.down * 0.86f;
+                else enemyModel.transform.position = Vector3.down * 0.46f;
+                // H: 0.54
+                // H: 0.14
                 break;
             default:
                 break;
