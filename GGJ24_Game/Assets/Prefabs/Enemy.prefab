@@ -258,7 +258,8 @@ MonoBehaviour:
   startState: {fileID: 11400000, guid: 48428dadc784e994ba2429cd7493ea2a, type: 2}
   frenzySpeedIncrementPercent: 0
   flankSpeedIncrementPercent: 0
-  frenzyStartSpeedIncrementPercent: 42.85
+  frenzyStartSpeed: 5
+  frenzySpeedReduction: 0.5
   enemyFovAngle: 90
   enemyVisionRange: 100
   timeHiddenThreshold: 5
@@ -386,6 +387,10 @@ MonoBehaviour:
   rightLeg: {fileID: 8766125758965026658}
   hips: {fileID: 126882301682442880}
   head: {fileID: 2856434410118998761}
+  cone: {fileID: 3336047432938344614}
+  leftClaw: {fileID: 4549566025773591835}
+  rightClaw: {fileID: 5000880912168360168}
+  flotador: {fileID: 1369312898448281966}
 --- !u!1 &7265994821595329305
 GameObject:
   m_ObjectHideFlags: 0
