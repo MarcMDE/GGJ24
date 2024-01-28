@@ -29,6 +29,8 @@ public class EnemyEffectsApplier : MonoBehaviour
 
     [SerializeField] Transform flotador;
 
+    [SerializeField] GameObject particlesPrefab;
+
     bool hasLegsEffect = false;
     bool hasSmolEffect = false;
     bool hasSalchicha = false;
@@ -76,6 +78,9 @@ public class EnemyEffectsApplier : MonoBehaviour
 
     public void ApplyRandomEffect()
     {
+        var particles = Instantiate(particlesPrefab);
+        particles.transform.position = transform.position;
+
         EffectsEnum effect;
         if (effectsLeft.Count == 0) effect = EffectsEnum.NONE;
         else

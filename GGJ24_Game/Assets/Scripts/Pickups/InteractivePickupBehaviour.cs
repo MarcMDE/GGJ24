@@ -7,10 +7,15 @@ public class InteractivePickupBehaviour : InteractiveBehaviourBase
 {
     [SerializeField] GameObject modelObject;
 
+    [SerializeField] GameObject particlesPrefab;
+
     [FormerlySerializedAs("noiseCollider")] [SerializeField] private SphereCollider soundRadius;
     protected override void CompleteInteraction()
     {
         base.CompleteInteraction();
+
+        var goParts = Instantiate(particlesPrefab);
+        goParts.transform.position = transform.position;
 
         modelObject.SetActive(false);
         GetComponent<AudioSource>().enabled = true;

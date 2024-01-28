@@ -71,6 +71,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDuration: 1.5
   modelObject: {fileID: 864372653958051382}
+  particlesPrefab: {fileID: 5805318583367453739, guid: 49dc5e62636114560bf928b7314c8c02,
+    type: 3}
   soundRadius: {fileID: 3711395949057620543}
 --- !u!82 &7032644162733074738
 AudioSource:
