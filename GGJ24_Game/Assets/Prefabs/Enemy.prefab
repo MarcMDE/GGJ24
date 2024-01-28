@@ -258,7 +258,8 @@ MonoBehaviour:
   startState: {fileID: 11400000, guid: 48428dadc784e994ba2429cd7493ea2a, type: 2}
   frenzySpeedIncrementPercent: 0
   flankSpeedIncrementPercent: 0
-  frenzyStartSpeedIncrementPercent: 42.85
+  frenzyStartSpeed: 5
+  frenzySpeedReduction: 0.5
   enemyFovAngle: 90
   enemyVisionRange: 100
   timeHiddenThreshold: 5
@@ -474,7 +475,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -522,7 +523,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
