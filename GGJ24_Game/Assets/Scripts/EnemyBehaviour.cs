@@ -16,7 +16,9 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     [SerializeField] private float frenzySpeedIncrementPercent;
     [SerializeField] private float flankSpeedIncrementPercent;
-    [SerializeField] private float frenzyStartSpeedIncrementPercent;
+    [SerializeField] private float frenzyStartSpeed = 5;
+    [SerializeField] private float frenzySpeedReduction = 5;
+    
 
     [SerializeField] private float enemyFovAngle = 60;
     [SerializeField] private float enemyVisionRange = 100;
@@ -37,6 +39,8 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     public EnemyStates CurrentState => currentState.State;
     public EnemyStates[] StatesWithAggroDropDelay => statesWithAggroDropDelay;
 
+    private float frenzySpeed;
+
     private bool isStateInitialized = false;
     private bool stateInitializationStarted = false;
     
@@ -56,6 +60,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     void Start()
     {
+        frenzySpeed = frenzyStartSpeed;
         enemyDamage = startDamage;
         currentState = startState;
     }
@@ -101,7 +106,12 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     public void ReduceDamage()
     {
-        enemyDamage = Mathf.Min(enemyDamage - damageReduction, minDamage);
+        enemyDamage = Mathf.Max(enemyDamage - damageReduction, minDamage);
+    }
+
+    public void ReduceFrenzySpeed()
+    {
+        frenzySpeed = Mathf.Max(frenzySpeed - frenzySpeedReduction, navMeshController.BaseSpeed);
     }
 
     public bool CanTranisitonToState(EnemyStates state)
@@ -152,7 +162,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     
     void UpdateFrenzy()
     {
-        navMeshController.IncreaseSpeed(frenzySpeedIncrementPercent * Time.deltaTime);
+        //navMeshController.IncreaseSpeed(frenzySpeedIncrementPercent * Time.deltaTime);
         navMeshController.SetDestination(Player.Instance.Position);
     }
     
@@ -176,7 +186,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     }
     void UpdateFlank()
     {
-        navMeshController.IncreaseSpeed(flankSpeedIncrementPercent * Time.deltaTime);
+        //navMeshController.IncreaseSpeed(flankSpeedIncrementPercent * Time.deltaTime);
         navMeshController.SetDestination(Player.Instance.Position);
     }
     
@@ -221,7 +231,8 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         SetAnimation(AnimatorStates.Run);
 
         navMeshController.ResetSpeed();
-        navMeshController.IncreaseSpeed(frenzyStartSpeedIncrementPercent);
+        Debug.Log(navMeshController.BaseSpeed);
+        navMeshController.SetSpeed(frenzySpeed);
         navMeshController.SetDestination(Player.Instance.Position);
         navMeshController.IsStopped = false;
         isStateInitialized = true;
