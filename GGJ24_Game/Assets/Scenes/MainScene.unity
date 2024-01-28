@@ -926,7 +926,7 @@ PrefabInstance:
     - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
       propertyPath: aggroDropDelay
-      value: 0.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
@@ -943,6 +943,21 @@ PrefabInstance:
       propertyPath: frenzyStartSpeedIncrementPercent
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: statesWithAggroDropDelay.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: statesWithAggroDropDelay.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: statesWithAggroDropDelay.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6219348068698982588, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
       propertyPath: m_Enabled
@@ -951,7 +966,7 @@ PrefabInstance:
     - target: {fileID: 6219348068698982588, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
       propertyPath: m_AngularSpeed
-      value: 270
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 6624975463882861138, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}

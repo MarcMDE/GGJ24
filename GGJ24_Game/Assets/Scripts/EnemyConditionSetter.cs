@@ -15,7 +15,7 @@ public class EnemyConditionSetter : MonoBehaviour
     private float playerFarDistance;
     private float playerHorizontalFov;
 
-    private float playerHiddenCounter = 0f;
+    private float playerHiddenCounter = 99999999999f;
     private float enemyHiddenCounter = 0f;
     
     
@@ -32,7 +32,7 @@ public class EnemyConditionSetter : MonoBehaviour
         var viewPlayer = CheckViewPlayer();
         var viewedByPlayer = CheckViewedByPlayer();
 
-        EnemyTransitionConditionsContainer.Instance.Values.ViewPlayer = CheckPlayerHiddenTime() || viewPlayer ? TriState.TRUE : TriState.FALSE;
+        EnemyTransitionConditionsContainer.Instance.Values.ViewPlayer = CheckExtraAggro() || viewPlayer ? TriState.TRUE : TriState.FALSE;
         EnemyTransitionConditionsContainer.Instance.Values.ViewedByPlayer = viewedByPlayer ? TriState.TRUE : TriState.FALSE;
         
         UpdateTimeHidden( viewPlayer, viewedByPlayer);
@@ -58,9 +58,16 @@ public class EnemyConditionSetter : MonoBehaviour
         }
     }
 
-    private bool CheckPlayerHiddenTime()
+    private bool CheckExtraAggro()
     {
-        return playerHiddenCounter < enemyBehaviour.AggroDropDelay;
+        bool ret = playerHiddenCounter < enemyBehaviour.AggroDropDelay;
+
+        foreach (var state in enemyBehaviour.StatesWithAggroDropDelay)
+        {
+            ret = ret && state == enemyBehaviour.CurrentState ;
+        }
+
+        return ret;
     }
     
     public void Init()
