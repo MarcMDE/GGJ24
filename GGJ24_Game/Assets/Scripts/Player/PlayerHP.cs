@@ -30,7 +30,7 @@ public class PlayerHP : MonoBehaviour
         Debug.Log($"Player loses {d} HP");
         currentHP -= d;
 
-        StopCoroutine(RecoverHPCoroutine());
+        StopAllCoroutines();
 
         if (currentHP < 0f)
         {

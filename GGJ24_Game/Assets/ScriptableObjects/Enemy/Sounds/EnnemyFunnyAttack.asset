@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7770f7fe657efba4a836456b46b16e00, type: 3}
+  m_Name: EnnemyFunnyAttack
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 805856339ab244044afebf2e93ee8e70, type: 3}
+  - {fileID: 8300000, guid: 1ef38589b551ae541b85fdd2232e5352, type: 3}
+  - {fileID: 8300000, guid: 67bae7fb37f6da646990a2c78e19a931, type: 3}
+  - {fileID: 8300000, guid: 83cfc2f15d7165f4cb76a8da3b61ecf4, type: 3}
+  - {fileID: 8300000, guid: 480a6c39f536e214f96f3e330471aa13, type: 3}
+  - {fileID: 8300000, guid: ba100174c5035f848ba2b1d261781ca5, type: 3}

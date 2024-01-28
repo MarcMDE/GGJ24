@@ -28,6 +28,9 @@ public class EnemyEffectsApplier : MonoBehaviour
 
     bool hasLegsEffect = false;
     bool hasSmolEffect = false;
+    bool hasSalchicha = false;
+
+    public bool HasSalchicha => hasSalchicha;
 
     List<EffectsEnum> effectsLeft = new List<EffectsEnum>();
 
@@ -81,10 +84,12 @@ public class EnemyEffectsApplier : MonoBehaviour
                 break;
             case EffectsEnum.NO_WEAPON_1:
                 leftClaw.gameObject.SetActive(true);
+                hasSalchicha = true;
                 EnemyBehaviour.Instance.ReduceDamage();
                 break;
             case EffectsEnum.NO_WEAPON_2:
                 rightClaw.gameObject.SetActive(true);
+                hasSalchicha = true;
                 EnemyBehaviour.Instance.ReduceDamage();
                 break;
             case EffectsEnum.RIDICUOLOUS:

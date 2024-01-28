@@ -7,20 +7,28 @@ public class FinishLogic : MonoBehaviour
 {
     [SerializeField] DoorSwitchBehaviour doorSwitch;
 
+    bool hasFinished = false;
+
     private void Awake()
     {
+        hasFinished = false;
         Player.Instance.GetComponent<PlayerHP>().OnDead += Lose;
         doorSwitch.OnComplete += Win;
     }
     
     void Lose()
     {
+        if (hasFinished) return;
+
         Player.Instance.GetComponent<PlayerController>().enabled = false;
+        hasFinished = true;
         Invoke("ReloadScene", 4f);
     }
 
     void Win()
     {
+        if (hasFinished) return;
+        hasFinished = true;
         EnemyBehaviour.Instance.enabled = false;
         Invoke("ReloadScene", 4f);
     }

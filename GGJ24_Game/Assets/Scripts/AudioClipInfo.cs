@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioClipInfo : MonoBehaviour
 {
+    [SerializeField] SoundsCollectionSO sounds = null;
+
     public EnemyAudio AudioType;
     private AudioSource audioSource;
     // Start is called before the first frame update
@@ -16,6 +18,11 @@ public class AudioClipInfo : MonoBehaviour
     // Update is called once per frame
     public void Play()
     {
+        if (sounds != null)
+        {
+            audioSource.clip = sounds.RandomClip;
+        }
+
         audioSource.Play();
     }
 }

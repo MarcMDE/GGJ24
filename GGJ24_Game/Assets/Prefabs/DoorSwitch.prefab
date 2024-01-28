@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5342e2384f895484ea82e1f1f05626b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDuration: 4
+  interactionDuration: 50
   soundRadius: {fileID: 3877819315261594455}
 --- !u!82 &3318758701262117142
 AudioSource:

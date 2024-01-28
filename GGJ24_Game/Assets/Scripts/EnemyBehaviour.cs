@@ -43,6 +43,8 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     private bool isStateInitialized = false;
     private bool stateInitializationStarted = false;
+
+    EnemyEffectsApplier effectsApplier;
     
     private delegate void voidDelegate();
 
@@ -56,6 +58,7 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
         enemyAudioPlayer = GetComponent<EnemyAudioPlayer>();
         navMeshController = GetComponent<NavMeshController>();
+        effectsApplier = GetComponent<EnemyEffectsApplier>();
     }
 
     void Start()
@@ -243,7 +246,12 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         navMeshController.IsStopped = true;
         
         SetAnimation(AnimatorStates.Attack);
-        
+
+        if (effectsApplier.HasSalchicha)
+            enemyAudioPlayer.PlaySound(EnemyAudio.AttackBalloon);
+        else
+            enemyAudioPlayer.PlaySound(EnemyAudio.Attack);
+
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
         var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         var time = stateInfo.length;
