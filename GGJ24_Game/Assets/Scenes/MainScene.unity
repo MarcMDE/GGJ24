@@ -326,12 +326,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!135 &473758062 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 6582535209514339734, guid: 9dbdc2cb5d8197f4192788f695c53a06,
-    type: 3}
-  m_PrefabInstance: {fileID: 936100179}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &512462987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -479,37 +473,8 @@ PrefabInstance:
     - {fileID: 5953459001059156928, guid: 9dbdc2cb5d8197f4192788f695c53a06, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9048836696952533239, guid: 9dbdc2cb5d8197f4192788f695c53a06,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1499014254}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dbdc2cb5d8197f4192788f695c53a06, type: 3}
---- !u!1 &1499014249 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9048836696952533239, guid: 9dbdc2cb5d8197f4192788f695c53a06,
-    type: 3}
-  m_PrefabInstance: {fileID: 936100179}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1499014254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499014249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16f1c943da119a54a8273f1acdb8863f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  soundRadius: {fileID: 473758062}
 --- !u!1001 &1567985826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -963,6 +928,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7569189259059893392, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7569189259059893392, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7569189259059893392, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766125758965026658, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766125758965026658, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766125758965026658, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
