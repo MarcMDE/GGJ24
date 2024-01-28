@@ -89,7 +89,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -232,7 +232,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 360
   m_StoppingDistance: 0
@@ -258,8 +258,8 @@ MonoBehaviour:
   startState: {fileID: 11400000, guid: 48428dadc784e994ba2429cd7493ea2a, type: 2}
   frenzySpeedIncrementPercent: 0
   flankSpeedIncrementPercent: 0
-  frenzyStartSpeedIncrementPercent: 25
-  enemyFovAngle: 60
+  frenzyStartSpeedIncrementPercent: 42.85
+  enemyFovAngle: 90
   enemyVisionRange: 100
   timeHiddenThreshold: 5
   statesWithAggroDropDelay: 01000000
@@ -284,7 +284,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f567ab4989fd6c449b4d431b28bb750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyModel: {fileID: 6418203029837271630}
   leftLeg: {fileID: 7569189259059893392}
   rightLeg: {fileID: 8766125758965026658}
   hips: {fileID: 126882301682442880}
