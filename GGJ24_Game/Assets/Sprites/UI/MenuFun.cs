@@ -11,6 +11,12 @@ public class MenuFun : MonoBehaviour
     public GameObject menu;
     public GameObject bgcredits;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
     public void LoadGame()
     {
         SceneManager.LoadScene("MainScene");

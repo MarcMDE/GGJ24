@@ -15,7 +15,7 @@ public class EnemyConditionSetter : MonoBehaviour
     private float playerFarDistance;
     private float playerHorizontalFov;
 
-    private float playerHiddenCounter = 0f;
+    private float playerHiddenCounter = 9999999999999f;
     private float enemyHiddenCounter = 0f;
     
     
