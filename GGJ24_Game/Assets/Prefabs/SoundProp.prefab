@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 3269903618700131838}
   - component: {fileID: 6375949282597693351}
   - component: {fileID: 8800145200732351128}
-  - component: {fileID: 5953459001059156928}
+  - component: {fileID: 6838850835088659816}
   m_Layer: 14
   m_Name: SoundProp
   m_TagString: Untagged
@@ -321,7 +321,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5953459001059156928
+--- !u!114 &6838850835088659816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9048836696952533239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a707afe29a19414dbd8ed534cc18ae2, type: 3}
+  m_Script: {fileID: 11500000, guid: 16f1c943da119a54a8273f1acdb8863f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerLayer:

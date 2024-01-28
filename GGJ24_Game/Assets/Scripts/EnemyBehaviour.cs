@@ -196,6 +196,8 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         Debug.Log("CR Instance");
         
         navMeshController.IsStopped = true;
+
+        Debug.Log("Init frenzy CR");
         enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
 
         SetAnimation(AnimatorStates.Scream);
