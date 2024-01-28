@@ -51068,10 +51068,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: enemyFovAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715267110178452088, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: frenzyStartSpeedIncrementPercent
+      value: 42.85
+      objectReference: {fileID: 0}
     - target: {fileID: 6219348068698982588, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
       propertyPath: m_Speed
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6219348068698982588, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
@@ -51097,6 +51107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072408155793135352, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: m_Radius
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8766125758965026658, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
