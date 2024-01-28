@@ -47,6 +47,11 @@ public class EnemyEffectsApplier : MonoBehaviour
         }
     }
 
+    float GameProgress()
+    {
+        return 1f - effectsLeft.Count / NEffects;
+    }
+
     public void ApplyRandomEffect()
     {
         EffectsEnum effect;
@@ -92,6 +97,7 @@ public class EnemyEffectsApplier : MonoBehaviour
                 if (hasLegsEffect) enemyModel.transform.localPosition = Vector3.down * 0.63f;
                 else enemyModel.transform.localPosition = Vector3.down * 0.32f;
 
+                EnemyBehaviour.Instance.ReduceFrenzySpeed();
                 //EnemyBehaviour.Instance.ReduceDamage();
                 // H: 0.54
                 // H: 0.14

@@ -213,11 +213,11 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     IEnumerator InitFrenzyCR()
     {
-        Debug.Log("CR Instance");
+        //Debug.Log("CR Instance");
         
         navMeshController.IsStopped = true;
 
-        Debug.Log("Init frenzy CR");
+        //Debug.Log("Init frenzy CR");
         enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
         MusicFlow.Instance.TryPlayMusic(MusicTrackNames.Chase);
 

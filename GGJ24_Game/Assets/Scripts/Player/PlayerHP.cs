@@ -27,6 +27,7 @@ public class PlayerHP : MonoBehaviour
 
     public void SufferDamage(float d)
     {
+        Debug.Log($"Player loses {d} HP");
         currentHP -= d;
 
         StopCoroutine(RecoverHPCoroutine());
@@ -49,6 +50,7 @@ public class PlayerHP : MonoBehaviour
     {
         yield return new WaitForSeconds(recoveringDelay);
 
+        Debug.Log("Recovering");
         float elapsedTime = 0f;
         float recoverDuration = (maxHP - currentHP) / recoverPerSec;
         float initialHp = currentHP;
@@ -60,6 +62,8 @@ public class PlayerHP : MonoBehaviour
             OnRecovering?.Invoke(currentHP / maxHP);
             yield return null;
         }
+
+        Debug.Log($"Fully recovered {currentHP}");
 
     }
 }
