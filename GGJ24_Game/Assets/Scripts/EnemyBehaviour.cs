@@ -22,13 +22,19 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     [SerializeField] private float enemyVisionRange = 100;
     [SerializeField] private float timeHiddenThreshold = 5;
     
+    [SerializeField] private EnemyStates[] statesWithAggroDropDelay;
+    [SerializeField] private float aggroDropDelay = 0.25f;
+    
     
     [SerializeField] private Animator animator;
     public float EnemyFovAngle => enemyFovAngle;
-
+    public float AggroDropDelay => aggroDropDelay;
     public float CurrentSpeed => navMeshController.CurrentSpeed;
+    public EnemyStates CurrentState => currentState.State;
+    public EnemyStates[] StatesWithAggroDropDelay => statesWithAggroDropDelay;
 
     private bool isStateInitialized = false;
+    private bool stateInitializationStarted = false;
     
     private delegate void voidDelegate();
 
@@ -82,7 +88,9 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
         {
             currentState = nextState;
             isStateInitialized = false;
+            stateInitializationStarted = false;
             EnemyTransitionConditionsContainer.Instance.Values.StateFinished = TriState.FALSE;
+            Debug.Log(currentState.State);
         }
     }
 
@@ -95,7 +103,12 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
     {
         if (!isStateInitialized)
         {
-            init();
+            if (!stateInitializationStarted)
+            {
+                stateInitializationStarted = true;
+                init();
+                
+            }
         }
         else
         {
@@ -180,14 +193,20 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     IEnumerator InitFrenzyCR()
     {
+        Debug.Log("CR Instance");
+        
         navMeshController.IsStopped = true;
 
         Debug.Log("Init frenzy CR");
         enemyAudioPlayer.PlaySound(EnemyAudio.Scream);
 
         SetAnimation(AnimatorStates.Scream);
-
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Run"));
+        
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Scream"));
+        var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        var time = stateInfo.length;
+        
+        yield return new WaitForSeconds(time * 0.9f);
         
         SetAnimation(AnimatorStates.Run);
 
@@ -200,11 +219,18 @@ public class EnemyBehaviour : SingletonMonoBehaviour<EnemyBehaviour>
 
     IEnumerator AttackCR()
     {
+        navMeshController.IsStopped = true;
+        
         SetAnimation(AnimatorStates.Attack);
         
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
+        var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        var time = stateInfo.length;
+        
+        yield return new WaitForSeconds(time * 0.9f);
         
         isStateInitialized = true;
+        navMeshController.IsStopped = false;
     }
 
     private void SetAnimation(AnimatorStates state)

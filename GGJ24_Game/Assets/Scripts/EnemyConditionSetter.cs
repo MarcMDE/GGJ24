@@ -15,7 +15,8 @@ public class EnemyConditionSetter : MonoBehaviour
     private float playerFarDistance;
     private float playerHorizontalFov;
 
-    private float timeHiddenCounter = 0f;
+    private float playerHiddenCounter = 0f;
+    private float enemyHiddenCounter = 0f;
     
     
     // Start is called before the first frame update
@@ -28,21 +29,45 @@ public class EnemyConditionSetter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EvaluateTimeHidden(CheckViewPlayer(), CheckViewedByPlayer());
+        var viewPlayer = CheckViewPlayer();
+        var viewedByPlayer = CheckViewedByPlayer();
+
+        EnemyTransitionConditionsContainer.Instance.Values.ViewPlayer = CheckExtraAggro() || viewPlayer ? TriState.TRUE : TriState.FALSE;
+        EnemyTransitionConditionsContainer.Instance.Values.ViewedByPlayer = viewedByPlayer ? TriState.TRUE : TriState.FALSE;
+        
+        UpdateTimeHidden( viewPlayer, viewedByPlayer);
     }
 
-    private void EvaluateTimeHidden(bool viewPlayer,bool viewedByPlayer)
+    private void UpdateTimeHidden(bool viewPlayer, bool viewedByPlayer)
     {
-        /*if (viewPlayer || viewedByPlayer)
+        if (viewPlayer)
         {
-            timeHiddenCounter = 0f;
+            playerHiddenCounter = 0f;
         }
         else
         {
-            timeHiddenCounter += Time.deltaTime;
-        }*/
-        
-        
+            playerHiddenCounter += Time.deltaTime;
+        }
+        if (viewedByPlayer)
+        {
+            enemyHiddenCounter = 0f;
+        }
+        else
+        {
+            enemyHiddenCounter += Time.deltaTime;
+        }
+    }
+
+    private bool CheckExtraAggro()
+    {
+        bool ret = playerHiddenCounter < enemyBehaviour.AggroDropDelay;
+
+        foreach (var state in enemyBehaviour.StatesWithAggroDropDelay)
+        {
+            ret = ret && state == enemyBehaviour.CurrentState ;
+        }
+
+        return ret;
     }
     
     public void Init()
@@ -81,12 +106,11 @@ public class EnemyConditionSetter : MonoBehaviour
         var gazeVector = Player.Instance.CenterPosition - transform.position;
         
         var angle = Vector3.Angle(gazeVector, transform.forward);
-        
-        
 
         var viewPlayer = false;
-        var rayMask = scenarioLayer | playerLayer;
         
+        var rayMask = scenarioLayer | playerLayer;
+                
         if (angle < enemyBehaviour.EnemyFovAngle && Physics.Raycast(transform.position, gazeVector, out RaycastHit hit, playerFarDistance,rayMask))
         {
             Debug.DrawRay(transform.position,gazeVector, Color.red,0.5f);
@@ -96,7 +120,6 @@ public class EnemyConditionSetter : MonoBehaviour
                 viewPlayer = true;
             }
         }
-        EnemyTransitionConditionsContainer.Instance.Values.ViewPlayer = viewPlayer ? TriState.TRUE : TriState.FALSE;
         
         return viewPlayer;
     }
@@ -118,8 +141,6 @@ public class EnemyConditionSetter : MonoBehaviour
                 viewedByPlayer = true;
             }
         }
-        EnemyTransitionConditionsContainer.Instance.Values.ViewedByPlayer = viewedByPlayer ? TriState.TRUE : TriState.FALSE;
-
         return viewedByPlayer;
     }
 

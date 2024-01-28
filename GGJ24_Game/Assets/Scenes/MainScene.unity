@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -469,8 +469,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundProp (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5953459001059156928, guid: 9dbdc2cb5d8197f4192788f695c53a06, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -869,6 +868,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 151957373419419032, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 776993208233277672, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
       propertyPath: surface
@@ -923,6 +927,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219348068698982588, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219348068698982588, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6624975463882861138, guid: c240adcbec5ea0941a0e513a0c3b0909,
         type: 3}
@@ -1026,6 +1040,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MockEnvironment
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757489651962859387, guid: 0597206317b978b4495275e7220cdff3,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: edce9683a23d21d468950b295862a673,
+        type: 2}
+    - target: {fileID: 6757489651962859387, guid: 0597206317b978b4495275e7220cdff3,
+        type: 3}
+      propertyPath: m_LayerMask.m_Bits
+      value: 8192
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
