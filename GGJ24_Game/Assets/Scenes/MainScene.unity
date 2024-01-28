@@ -131,11 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3522808944144850471, guid: 5800fd396ff56a44fbfc2c76fca42902,
-        type: 3}
-      propertyPath: maxHP
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 4838996655062165001, guid: 5800fd396ff56a44fbfc2c76fca42902,
         type: 3}
       propertyPath: m_Name
@@ -1074,6 +1069,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7426173508595123511, guid: c240adcbec5ea0941a0e513a0c3b0909,
+        type: 3}
+      propertyPath: particlesPrefab
+      value: 
+      objectReference: {fileID: 955162775980057544, guid: 6a519d11310294910a45e091f7f8d183,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
