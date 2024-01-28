@@ -21,14 +21,23 @@ public class MusicController : MonoBehaviour
         
     }
 
-    public void PlayTrack(MusicTrackNames trackName)
+    public void PlayTrack(MusicTrackNames trackName, bool usePreviousDelay = false)
     {
         foreach (var track in tracks)
         {
             if (track.trackName == trackName)
             {
                 audioSource.clip = track.clip;
-                audioSource.Play();
+                if (usePreviousDelay)
+                {
+                    var time = audioSource.time;
+                    audioSource.Play((ulong)time);
+                }
+                else
+                {
+                    audioSource.Play();
+                }
+                
             }
         }
     }

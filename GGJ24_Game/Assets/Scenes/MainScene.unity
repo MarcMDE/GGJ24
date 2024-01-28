@@ -936,6 +936,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music
       objectReference: {fileID: 0}
+    - target: {fileID: 4399561694939414166, guid: 210223f75bbe8384bb3a68b810d0a193,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399561694939414166, guid: 210223f75bbe8384bb3a68b810d0a193,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5348457791101942249, guid: 210223f75bbe8384bb3a68b810d0a193,
         type: 3}
       propertyPath: m_LocalPosition.x

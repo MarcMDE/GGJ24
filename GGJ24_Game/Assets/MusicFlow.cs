@@ -20,7 +20,7 @@ public class MusicFlow  : SingletonMonoBehaviour<MusicFlow>
     {
         if (track != currentTrack && (currentTrack <= MusicTrackNames.Chase || track > currentTrack  ) )
         {
-            musicController.PlayTrack(track);
+            musicController.PlayTrack(track, true);
             currentTrack = track;
         }
         
